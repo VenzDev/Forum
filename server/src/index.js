@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import logger from "morgan";
 import mongoose from "mongoose";
 import helmet from "helmet";
+import { handleError } from "./utils/error";
 
 const app = express();
 
@@ -20,6 +21,11 @@ app.get("/", (req, res) => {
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Listening on port 3000");
+});
+
+app.use((err, req, res, next) => {
+  console.log(err); //development!
+  handleError(err, res);
 });
 
 mongoose.connect(

@@ -28,6 +28,8 @@ var _helmet = require("helmet");
 
 var _helmet2 = _interopRequireDefault(_helmet);
 
+var _error = require("./utils/error");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _dotenv2.default.config();
@@ -43,12 +45,14 @@ app.use((0, _morgan2.default)("dev"));
 app.get("/", function (req, res) {
   res.status(200).json({ message: "Welcome to node js & Express" });
 });
-app.get("/info", function (req, res) {
-  res.status(200).json({ message: "Working!" });
-});
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("Listening on port 3000");
+});
+
+app.use(function (err, req, res, next) {
+  console.log(err); //development!
+  (0, _error.handleError)(err, res);
 });
 
 _mongoose2.default.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
