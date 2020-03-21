@@ -1,0 +1,9 @@
+.container {
+  padding-top: 7rem;
+  display: grid;
+  row-gap: 50px;
+  justify-items: center;
+  justify-content: center;
+  grid-template-columns: minmax(400px, 60%);
+  padding-bottom: 7rem;
+}

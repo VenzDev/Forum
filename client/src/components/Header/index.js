@@ -1,9 +1,11 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import s from "./header.module.scss";
 import { Link } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import Searchbar from "../Searchbar";
 import { withRouter } from "react-router-dom";
+import { user } from "../../redux/user";
 
 import UserIcons from "./UserIcons";
 
@@ -15,14 +17,14 @@ const handleOpenSearchbar = () => {
 };
 
 const Header = props => {
-  /*const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const storeUser = useSelector(store => store.userReducer);
   (Object.keys(storeUser.user).length && localStorage.getItem("token")) !== 0
     ? (isUser = true)
-    : (isUser = false);*/
+    : (isUser = false);
 
   const handleLogout = () => {
-    //dispatch(user.logout());
+    dispatch(user.logout());
     localStorage.removeItem("token");
     props.history.push("/");
   };

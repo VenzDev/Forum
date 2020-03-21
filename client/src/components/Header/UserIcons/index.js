@@ -55,9 +55,9 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
           {isNotificationmenuOpen && <Notifications />}
         </div>
         <div className={s.button}>
-          <button style={{ width: "16rem" }} className={b.button}>
+          <Link to={"/createThread"} style={{ width: "16rem" }} className={b.button}>
             Create Thread!
-          </button>
+          </Link>
         </div>
         <div className={s.avatar}>
           <FaUserAlt onClick={handleAvatarClick} />
