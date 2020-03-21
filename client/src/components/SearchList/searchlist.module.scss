@@ -1,0 +1,20 @@
+@import "../../styles/config.scss";
+
+.searchlist {
+  position: absolute;
+  top: 7.5vh;
+  width: 100%;
+  background-color: white;
+  font-size: 1.5rem;
+  list-style: none;
+  box-shadow: 0px 6px 12px rgba($color: #000000, $alpha: 0.25);
+}
+.listItem {
+  position: relative;
+  padding: 1rem;
+  border-bottom: 2px solid rgba($color: grey, $alpha: 0.25);
+}
+.listicon {
+  position: absolute;
+  right: 2rem;
+}
