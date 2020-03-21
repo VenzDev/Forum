@@ -24,7 +24,7 @@ const Searchbar = ({ openSearchbar, location }) => {
     setValue(e.target.value);
     if (e.target.value.length > 2) {
       axios
-        .get("http://localhost:1234/search/?data=" + e.target.value)
+        .get("http://localhost:1234/search/?data=" + e.target .value)
         .then(res => {
           setFetchedData(res.data);
         })
@@ -38,7 +38,6 @@ const Searchbar = ({ openSearchbar, location }) => {
       <div className={s.test}>
         <input
           value={value}
-          defaultValue=""
           className={s.searchbar}
           onChange={handleChange}
           type="text"

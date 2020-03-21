@@ -1,0 +1,75 @@
+@import "../../styles/config.scss";
+
+.container {
+  position: absolute;
+  height: 80%;
+  width: 500px;
+  background-color: white;
+  border-radius: 76px;
+  box-shadow: 0 6px 12px rgba($color: #000000, $alpha: 0.15);
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media only screen and (max-width: 500px) {
+    width: 100%;
+  }
+
+  & h2 {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    margin-left: 8rem;
+    font-size: 3.6rem;
+    font-size: bold;
+    color: $color-blue;
+  }
+  & .form {
+    width: 70%;
+    margin: 0 auto;
+  }
+  & .textField {
+    padding: 1rem;
+    padding-left: 1.5rem;
+    font-size: 2rem;
+    color: grey;
+  }
+
+  & .field {
+    display: block;
+    width: 100%;
+    height: 4rem;
+    border-radius: 32px;
+    border: 1px solid grey;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    padding-left: 25px;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  & .signup {
+    color: $color-blue;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+    &:hover {
+      font-size: 2.2rem;
+    }
+  }
+  & .recoveryLink {
+    padding: 1rem;
+    padding-left: 1.5rem;
+    padding-bottom: 2rem;
+    font-size: 2rem;
+    color: $color-blue;
+    text-decoration: none;
+    display: block;
+    transition: 0.2s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
