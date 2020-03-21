@@ -7,6 +7,7 @@ import logger from "morgan";
 import mongoose from "mongoose";
 import helmet from "helmet";
 import { handleError } from "./utils/error";
+import userRouter from "./routes/userRouter";
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.get("/", (req, res) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log("Listening on port 3000");
 });
+
+app.use("/", userRouter);
 
 app.use((err, req, res, next) => {
   console.log(err); //development!
