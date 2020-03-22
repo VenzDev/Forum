@@ -34,6 +34,18 @@ var _userRouter = require("./routes/userRouter");
 
 var _userRouter2 = _interopRequireDefault(_userRouter);
 
+var _forumRouter = require("./routes/forumRouter");
+
+var _forumRouter2 = _interopRequireDefault(_forumRouter);
+
+var _threadRouter = require("./routes/threadRouter");
+
+var _threadRouter2 = _interopRequireDefault(_threadRouter);
+
+var _postRouter = require("./routes/postRouter");
+
+var _postRouter2 = _interopRequireDefault(_postRouter);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _dotenv2.default.config();
@@ -55,6 +67,9 @@ app.listen(process.env.PORT || 3000, function () {
 });
 
 app.use("/", _userRouter2.default);
+app.use("/", _forumRouter2.default);
+app.use("/", _threadRouter2.default);
+app.use("/", _postRouter2.default);
 
 app.use(function (err, req, res, next) {
   console.log(err); //development!

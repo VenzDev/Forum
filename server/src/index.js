@@ -8,6 +8,9 @@ import mongoose from "mongoose";
 import helmet from "helmet";
 import { handleError } from "./utils/error";
 import userRouter from "./routes/userRouter";
+import forumRouter from "./routes/forumRouter";
+import threadRouter from "./routes/threadRouter";
+import postRouter from "./routes/postRouter";
 
 const app = express();
 
@@ -25,6 +28,9 @@ app.listen(process.env.PORT || 3000, () => {
 });
 
 app.use("/", userRouter);
+app.use("/", forumRouter);
+app.use("/", threadRouter);
+app.use("/", postRouter);
 
 app.use((err, req, res, next) => {
   console.log(err); //development!
