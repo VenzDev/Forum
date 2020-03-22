@@ -1,7 +1,8 @@
 import React from "react";
+import CreateThreadForm from "../components/CreateThreadForm";
 
 const CreateThreadPage = () => {
-  return <div>CreateThreadPage</div>;
+  return <CreateThreadForm />;
 };
 
 export default CreateThreadPage;

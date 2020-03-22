@@ -8,6 +8,7 @@ import forgotPasswordPage from "./pages/ForgotPasswordPage";
 import RegisterPage from "./pages/RegisterPage";
 import { ToastContainer } from "react-toastify";
 import CreateThreadPage from "./pages/CreateThreadPage";
+
 function App() {
   return (
     <>
