@@ -46,6 +46,8 @@ var _postRouter = require("./routes/postRouter");
 
 var _postRouter2 = _interopRequireDefault(_postRouter);
 
+var _search = require("./controllers/search");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _dotenv2.default.config();
@@ -65,7 +67,7 @@ app.get("/", function (req, res) {
 app.listen(process.env.PORT || 3000, function () {
   console.log("Listening on port 3000");
 });
-
+app.get("/search", _search.search);
 app.use("/", _userRouter2.default);
 app.use("/", _forumRouter2.default);
 app.use("/", _threadRouter2.default);

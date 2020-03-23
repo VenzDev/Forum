@@ -11,6 +11,7 @@ import userRouter from "./routes/userRouter";
 import forumRouter from "./routes/forumRouter";
 import threadRouter from "./routes/threadRouter";
 import postRouter from "./routes/postRouter";
+import { search } from "./controllers/search";
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.get("/", (req, res) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log("Listening on port 3000");
 });
-
+app.get("/search", search);
 app.use("/", userRouter);
 app.use("/", forumRouter);
 app.use("/", threadRouter);
