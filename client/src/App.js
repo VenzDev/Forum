@@ -21,6 +21,8 @@ function App() {
             <Route exact path="/login" component={LoginPage}></Route>
             <Route exact path="/register" component={RegisterPage}></Route>
             <Route exact path="/createThread" component={CreateThreadPage}></Route>
+            <Route exact path="/forum/:name" component={LoginPage}></Route>
+            <Route exact path="/thread/:id" component={LoginPage}></Route>
             <Route exact path="/forgot" component={forgotPasswordPage}></Route>
           </Switch>
         </Wrapper>

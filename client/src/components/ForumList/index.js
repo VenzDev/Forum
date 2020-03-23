@@ -2,13 +2,12 @@ import React from "react";
 import ForumItem from "../ForumItem";
 import s from "./forumlist.module.scss";
 
-const ForumList = () => {
+const ForumList = ({ forums }) => {
   return (
     <div className={s.container}>
-      <ForumItem />
-      <ForumItem />
-      <ForumItem />
-      <ForumItem />
+      {forums.map(forum => (
+        <ForumItem forum={forum} key={forum._id} />
+      ))}
     </div>
   );
 };
