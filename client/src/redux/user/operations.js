@@ -1,6 +1,6 @@
 import actions from "./actions";
 import axios from "axios";
-import { loginEndpoint, registerEndpoint } from "../../apiConfig";
+import { loginEndpoint, registerEndpoint, authEndpoint } from "../../apiConfig";
 
 const register = data => async dispatch => {
   try {
@@ -29,7 +29,7 @@ const logout = () => dispatch => dispatch(actions.logout());
 const auth = () => async dispatch => {
   try {
     const token = localStorage.getItem("token");
-    const fetchedProfile = await axios.get("http://localhost:1234/auth", {
+    const fetchedProfile = await axios.get(authEndpoint, {
       headers: { Authorization: `Bearer ${token}` }
     });
     if (fetchedProfile) dispatch(actions.auth(fetchedProfile.data));

@@ -1,5 +1,6 @@
 @import "../../styles/config.scss";
 .forumItem {
+  display: flex;
   position: relative;
   width: 100%;
   height: 200px;
@@ -8,8 +9,33 @@
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
   transition: 0.3s;
   overflow: hidden;
+  cursor: pointer;
   &:hover .hover {
     height: 7px;
+  }
+  &:hover .forumDesc h2 {
+    color: $color-blue;
+  }
+
+  & .forumDesc {
+    width: 50%;
+    display: flex;
+
+    & h2 {
+      padding: 2rem;
+      font-size: 2rem;
+    }
+    & p {
+      padding: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+  & .forumInfo {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
   }
 }
 
@@ -20,4 +46,13 @@
   width: 100%;
   background-color: $color-blue;
   transition: 0.2s;
+}
+.vertiaclLine {
+  position: absolute;
+  height: 80%;
+  width: 1px;
+  background-color: grey;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

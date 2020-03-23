@@ -12,6 +12,16 @@
     padding: 0.5rem;
   }
 
+  & .messageIcon,
+  .notificationIcon {
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      color: $color-blue;
+    }
+  }
+
   @include respond(tab-small) {
     justify-content: space-between;
     margin: 0 1rem;
@@ -31,4 +41,17 @@
   align-self: center;
   justify-content: center;
   font-size: 3.5rem;
+
+  & .avatarIcon {
+    cursor: pointer;
+    font-size: 3rem;
+    transition: 0.2s;
+
+    &:hover {
+      color: $color-blue;
+    }
+  }
+}
+.active {
+  color: $color-blue;
 }

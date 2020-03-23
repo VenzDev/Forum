@@ -49,9 +49,17 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
     return (
       <>
         <div className={s.icons}>
-          <FiMessageCircle onClick={handleMessageClick} />
+          <FiMessageCircle
+            className={s.messageIcon}
+            style={isMessagemenuOpen && { color: "blue" }}
+            onClick={handleMessageClick}
+          />
           {isMessagemenuOpen && <Messages />}
-          <MdNotificationsNone onClick={handleNotificationClick} />
+          <MdNotificationsNone
+            className={s.notificationIcon}
+            style={isNotificationmenuOpen && { color: "blue" }}
+            onClick={handleNotificationClick}
+          />
           {isNotificationmenuOpen && <Notifications />}
         </div>
         <div className={s.button}>
@@ -60,7 +68,10 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
           </Link>
         </div>
         <div className={s.avatar}>
-          <FaUserAlt onClick={handleAvatarClick} />
+          <FaUserAlt
+            className={isAvatarmenuOpen ? `${s.avatarIcon} ${s.active}` : s.avatarIcon}
+            onClick={handleAvatarClick}
+          />
           {isAvatarmenuOpen && <AvatarMenu />}
         </div>
       </>

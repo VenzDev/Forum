@@ -4,6 +4,7 @@ import s from "./search.module.scss";
 import { FiSearch } from "react-icons/fi";
 import SearchList from "../SearchList";
 import { withRouter } from "react-router-dom";
+import { searchEndpoint } from "../../apiConfig";
 
 const Searchbar = ({ openSearchbar, location }) => {
   const [value, setValue] = useState("");
@@ -24,7 +25,7 @@ const Searchbar = ({ openSearchbar, location }) => {
     setValue(e.target.value);
     if (e.target.value.length > 2) {
       axios
-        .get("http://localhost:1234/search/?data=" + e.target .value)
+        .get(searchEndpoint + e.target.value)
         .then(res => {
           setFetchedData(res.data);
         })
