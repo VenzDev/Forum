@@ -2,12 +2,25 @@ import React from "react";
 import s from "./createthread.module.scss";
 import b from "../button.module.scss";
 import { useSelector } from "react-redux";
+import { Form, Field, Formik } from "formik";
+import axios from "axios";
+import { createThreadEndpoint } from "../../apiConfig";
+import { withRouter } from "react-router-dom";
 
-const CreateThreadForm = () => {
+const CreateThreadForm = props => {
   const { forums } = useSelector(state => state.forumReducer);
 
+  let forumName = "React";
+
+  const token = localStorage.getItem("token");
+
+  const handleChange = e => {
+    forumName = e.target.value;
+    console.log(forumName);
+  };
+
   const DropdownMenu = () => (
-    <select className={s.dropdown} id="cars">
+    <select onClick={handleChange} className={s.dropdown}>
       <option default disabled>
         Select forum
       </option>
@@ -23,15 +36,47 @@ const CreateThreadForm = () => {
     <div className={s.container}>
       <h2>Create thread</h2>
       <DropdownMenu />
-      <p>Thread topic</p>
-      <input className={s.topicInput} type="text" />
-      <p>Content</p>
-      <textarea className={s.topicArea}></textarea>
-      <button style={{ margin: "1.5rem auto", padding: "1rem" }} className={b.button}>
-        Create
-      </button>
+      <Formik
+        initialValues={{ threadTopic: "", content: "" }}
+        onSubmit={(values, { setSubmitting }) => {
+          console.log({ ...values, forumName });
+          axios
+            .post(
+              createThreadEndpoint,
+              { ...values, forumName },
+              {
+                headers: { Authorization: `Bearer ${token}` }
+              }
+            )
+            .then(res => {
+              console.log(res.data);
+              props.history.push("/thread/" + res.data._id);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          setSubmitting(false);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <p>Thread topic</p>
+            <Field className={s.topicInput} type="text" name="threadTopic" />
+            <p>Content</p>
+            <Field as="textarea" type="text" className={s.topicArea} name="content" />
+            <button
+              disabled={isSubmitting}
+              type="submit"
+              style={{ margin: "1.5rem auto", padding: "1rem" }}
+              className={b.button}
+            >
+              Create
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
 
-export default CreateThreadForm;
+export default withRouter(CreateThreadForm);
