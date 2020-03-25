@@ -17,7 +17,6 @@ const CreateThreadForm = props => {
 
   const handleChange = e => {
     forumName = e.target.value;
-    console.log(forumName);
   };
 
   const DropdownMenu = () => (

@@ -29,9 +29,7 @@ const Searchbar = ({ openSearchbar, location }) => {
         .then(res => {
           setFetchedData(res.data);
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch();
     } else setFetchedData({ users: [], threads: [] });
   };
   return (
