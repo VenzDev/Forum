@@ -8,6 +8,8 @@ import forgotPasswordPage from "./pages/ForgotPasswordPage";
 import RegisterPage from "./pages/RegisterPage";
 import { ToastContainer } from "react-toastify";
 import CreateThreadPage from "./pages/CreateThreadPage";
+import ThreadPage from "./pages/ThreadPage";
+import ThreadsPage from "./pages/ThreadsPage";
 
 function App() {
   return (
@@ -21,8 +23,8 @@ function App() {
             <Route exact path="/login" component={LoginPage}></Route>
             <Route exact path="/register" component={RegisterPage}></Route>
             <Route exact path="/createThread" component={CreateThreadPage}></Route>
-            <Route exact path="/forum/:name" component={LoginPage}></Route>
-            <Route exact path="/thread/:id" component={LoginPage}></Route>
+            <Route exact path="/forum/:name" component={ThreadsPage}></Route>
+            <Route exact path="/thread/:id" component={ThreadPage}></Route>
             <Route exact path="/forgot" component={forgotPasswordPage}></Route>
           </Switch>
         </Wrapper>

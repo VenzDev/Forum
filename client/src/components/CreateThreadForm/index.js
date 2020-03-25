@@ -6,6 +6,7 @@ import { Form, Field, Formik } from "formik";
 import axios from "axios";
 import { createThreadEndpoint } from "../../apiConfig";
 import { withRouter } from "react-router-dom";
+import showToast from "../../utils/showToast";
 
 const CreateThreadForm = props => {
   const { forums } = useSelector(state => state.forumReducer);
@@ -50,6 +51,7 @@ const CreateThreadForm = props => {
             )
             .then(res => {
               console.log(res.data);
+              showToast("Thread created successfully!");
               props.history.push("/thread/" + res.data._id);
             })
             .catch(err => {
