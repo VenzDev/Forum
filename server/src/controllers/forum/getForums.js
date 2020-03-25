@@ -3,7 +3,7 @@ import { ErrorHandler } from "../../utils/error";
 
 export const getForums = async (req, res, next) => {
   try {
-    const forums = await forum.find({});
+    const forums = await forum.find({}).populate("threads");
     if (forums) res.status(201).json(forums);
     else ErrorHandler(422, "Problem with mongoDb");
   } catch (err) {
