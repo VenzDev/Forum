@@ -13,7 +13,7 @@ const ForumItem = ({ forum }) => {
           <p>{forum.description}</p>
         </div>
       </div>
-      <div className={s.forumInfo}>Threads 30</div>
+      <div className={s.forumInfo}>{`Threads ${forum.threads.length}`}</div>
       <div className={s.hover}></div>
       <div className={s.vertiaclLine}></div>
     </Link>

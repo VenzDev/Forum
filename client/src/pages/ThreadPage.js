@@ -1,74 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Loader from "react-loader-spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { thread } from "../redux/thread";
 import s from "./threadpage.module.scss";
-import b from "../components/button.module.scss";
-import { createPostEndpoint } from "../apiConfig";
-import axios from "axios";
 import { withRouter } from "react-router-dom";
-import showToast from "../utils/showToast";
+import PostsList from "../components/PostsList";
+import CreatePost from "../components/CreatePost";
+import { FaUserCircle } from "react-icons/fa";
 
 const ThreadPage = props => {
   const dispatch = useDispatch();
   const threadState = useSelector(state => state.threadReducer);
-  const [post, setPost] = useState("");
-  const token = localStorage.getItem("token");
+  const userState = useSelector(state => state.userReducer);
+  const { user, posts, name, content, createdAt } = threadState.thread;
+  const date = new Date(createdAt);
   useEffect(() => {
     dispatch(thread.findThread(props.match.params.id));
   }, [dispatch, props.match.params.id]);
 
-  const handleChange = e => {
-    setPost(e.target.value);
-  };
-  const handleSubmit = () => {
-    if (post.trim(""))
-      axios
-        .post(
-          createPostEndpoint,
-          { content: post, threadId: props.match.params.id },
-          { headers: { Authorization: `Bearer ${token}` } }
-        )
-        .then(() => {
-          showToast("Post created!");
-          dispatch(thread.findThread(props.match.params.id));
-        });
-  };
+  let style = "";
+  if (user && userState.user.id === user._id) style = s.border;
+  else style = "";
 
-  const centerLoader = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)"
-  };
+  const RootPost = () => (
+    <div className={`${s.container} ${style}`}>
+      <div className={s.content}>
+        <h1>{name}</h1>
+        <h2>{content}</h2>
+      </div>
+      <div className={s.userInfo}>
+        <FaUserCircle className={s.userAvatar} />
+        {user && <h2>{`${user.name}  ${user.surname}`}</h2>}
+        <p>{`Created at: ${date.toLocaleString()}`}</p>
+      </div>
+      <div className={s.line}></div>
+    </div>
+  );
 
   return threadState.loading ? (
-    <div style={centerLoader}>
+    <div className={s.centerLoader}>
       <Loader type="BallTriangle" color="blue" />
     </div>
   ) : (
     <div className={s.wrapper}>
-      <div className={s.container}>
-        <h1>{threadState.thread.name}</h1>
-        <h2>{threadState.thread.content}</h2>
-      </div>
-      {threadState.thread.posts &&
-        threadState.thread.posts.map(post => (
-          <div className={s.post} key={post._id}>
-            {post.content}
-          </div>
-        ))}
-      <div className={s.createPost}>
-        <p>Create new Post</p>
-        <textarea onChange={handleChange} placeholder="New post..."></textarea>
-        <button
-          onClick={handleSubmit}
-          style={{ margin: "0 auto", padding: "1rem" }}
-          className={b.button}
-        >
-          Create
-        </button>
-      </div>
+      <RootPost />
+      {posts && <PostsList posts={posts} />}
+      {userState.user && localStorage.getItem("token") && (
+        <CreatePost threadId={props.match.params.id} />
+      )}
     </div>
   );
 };

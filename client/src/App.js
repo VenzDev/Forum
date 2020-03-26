@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import CreateThreadPage from "./pages/CreateThreadPage";
 import ThreadPage from "./pages/ThreadPage";
 import ThreadsPage from "./pages/ThreadsPage";
+import UserPage from "./pages/UserPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/register" component={RegisterPage}></Route>
             <Route exact path="/createThread" component={CreateThreadPage}></Route>
             <Route exact path="/forum/:name" component={ThreadsPage}></Route>
+            <Route exact path="/user/:id" component={UserPage}></Route>
             <Route exact path="/thread/:id" component={ThreadPage}></Route>
             <Route exact path="/forgot" component={forgotPasswordPage}></Route>
           </Switch>
