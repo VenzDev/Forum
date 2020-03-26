@@ -1,3 +1,3 @@
 # Forum
-Simple discussion forum 
+## Simple discussion forum<br/>
 https://ntp-forum.herokuapp.com/
