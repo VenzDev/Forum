@@ -1,0 +1,30 @@
+@import "../../styles/config.scss";
+
+.container {
+  position: relative;
+  height: 100px;
+  text-decoration: none;
+  transition: 0.2s;
+
+  &:visited {
+    color: black;
+  }
+  &:hover {
+    color: $color-blue;
+  }
+
+  & h2 {
+    padding-left: 5%;
+    padding-top: 2rem;
+    font-size: 2rem;
+  }
+}
+.line {
+  position: absolute;
+  bottom: -1%;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1px;
+  background-color: grey;
+}

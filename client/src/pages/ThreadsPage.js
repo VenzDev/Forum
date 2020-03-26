@@ -1,28 +1,24 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import ThreadsList from "../components/ThreadsList";
 
 const ThreadsPage = props => {
   const data = useSelector(state => state.forumReducer);
   let filteredForum = data.forums.filter(forum => forum.name === props.match.params.name);
   filteredForum = filteredForum[0];
 
-  const linkStyle = {
-    display: "block",
-    textDecoration: "none",
-    fontSize: "2rem",
-    padding: "2rem"
+  const h1Style = {
+    margin: "0",
+    paddingTop: "5rem",
+    paddingLeft: "40rem",
+    color: "blue",
+    fontSize: "3rem"
   };
 
   return (
     <div>
-      <h1>{props.match.params.name}</h1>
-      {filteredForum.threads &&
-        filteredForum.threads.map(thread => (
-          <Link style={linkStyle} to={`/thread/${thread._id}`} key={thread._id}>
-            {thread.name}
-          </Link>
-        ))}
+      <h1 style={h1Style}>{props.match.params.name}</h1>
+      {filteredForum && <ThreadsList threads={filteredForum.threads} />}
     </div>
   );
 };
