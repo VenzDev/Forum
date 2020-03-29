@@ -8,9 +8,6 @@ export const fetchForumsEndpoint = url + "/getForums";
 export const createThreadEndpoint = url + "/createThread";
 export const findThreadEndpoint = url + "/findThread?id=";
 export const createPostEndpoint = url + "/createPost";
-
-//dev
-
-export const deletePostEndpoint = "http://localhost:3000/deletePost";
-export const editPostEndpoint = "http://localhost:3000/editPost";
-export const fetchProfilEndpoint = "http://localhost:3000/fetchProfil?id=";
+export const deletePostEndpoint = url + "/deletePost";
+export const editPostEndpoint = url + "/editPost";
+export const fetchProfilEndpoint = url + "/fetchProfil?id=";

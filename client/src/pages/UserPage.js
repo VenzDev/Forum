@@ -33,9 +33,15 @@ const UserPage = props => {
         <FaUser className={s.userLogo} />
       </div>
       <div className={s.userInfo}>
-        <p>{`Name: ${name}`}</p>
-        <p>{`Surname: ${surname}`}</p>
-        <p>{`Member from: ${data.toLocaleString()}`}</p>
+        <p>
+          Name: <span>{name}</span>
+        </p>
+        <p>
+          Surname: <span>{surname}</span>
+        </p>
+        <p>
+          Member from: <span>{data.toLocaleString()}</span>
+        </p>
       </div>
     </div>
   );
