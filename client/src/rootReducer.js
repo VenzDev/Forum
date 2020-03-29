@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import userReducer from "./redux/user";
+import { userReducer, profilReducer } from "./redux/user";
 import forumReducer from "./redux/forum";
 import threadReducer from "./redux/thread";
 const initState = {
@@ -17,7 +17,8 @@ const rootReducer = combineReducers({
   helloWorldReducer,
   userReducer,
   forumReducer,
-  threadReducer
+  threadReducer,
+  profilReducer
 });
 
 export default rootReducer;

@@ -39,7 +39,6 @@ const CreateThreadForm = props => {
       <Formik
         initialValues={{ threadTopic: "", content: "" }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log({ ...values, forumName });
           axios
             .post(
               createThreadEndpoint,
@@ -49,13 +48,10 @@ const CreateThreadForm = props => {
               }
             )
             .then(res => {
-              console.log(res.data);
               showToast("Thread created successfully!");
               props.history.push("/thread/" + res.data._id);
             })
-            .catch(err => {
-              console.log(err);
-            });
+            .catch(err => {});
           setSubmitting(false);
         }}
       >

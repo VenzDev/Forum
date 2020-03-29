@@ -7,6 +7,12 @@ const initUserState = {
   tokenInfo: null
 };
 
+const fetchProfilState = {
+  user: {},
+  loading: false,
+  error: { message: "" }
+};
+
 const userReducer = (state = initUserState, action) => {
   switch (action.type) {
     case types.LOGIN_REQUEST_PENDING:
@@ -30,4 +36,17 @@ const userReducer = (state = initUserState, action) => {
   }
 };
 
-export default userReducer;
+const profilReducer = (state = fetchProfilState, action) => {
+  switch (action.type) {
+    case types.FETCH_PROFIL_PENDING:
+      return { ...state, loading: action.payload, error: { message: "" } };
+    case types.FETCH_PROFIL_SUCCESS:
+      return { ...state, user: action.payload, loading: false, error: { message: "" } };
+    case types.FETCH_PROFIL_FAILED:
+      return fetchProfilState;
+    default:
+      return state;
+  }
+};
+
+export { userReducer, profilReducer };

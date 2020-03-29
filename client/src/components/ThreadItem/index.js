@@ -2,7 +2,6 @@ import React from "react";
 import s from "./threadItem.module.scss";
 import { Link } from "react-router-dom";
 const ThreadItem = ({ thread }) => {
-  console.log(thread);
   const date = new Date(thread.createdAt);
   return (
     <Link to={`/thread/${thread._id}`} className={s.container}>

@@ -1,6 +1,11 @@
 import actions from "./actions";
 import axios from "axios";
-import { loginEndpoint, registerEndpoint, authEndpoint } from "../../apiConfig";
+import {
+  loginEndpoint,
+  registerEndpoint,
+  authEndpoint,
+  fetchProfilEndpoint
+} from "../../apiConfig";
 
 const register = data => async dispatch => {
   try {
@@ -33,11 +38,21 @@ const auth = () => async dispatch => {
       headers: { Authorization: `Bearer ${token}` }
     });
     if (fetchedProfile) dispatch(actions.auth(fetchedProfile.data));
+    else localStorage.removeItem("token");
   } catch (err) {
     if (err) {
-      console.log(err);
+      localStorage.removeItem("token");
     }
   }
 };
+const fetchProfil = id => async dispatch => {
+  try {
+    dispatch(actions.fetchProfilPending());
+    const fetchedProfile = await axios.get(fetchProfilEndpoint + id);
+    if (fetchedProfile) dispatch(actions.fetchProfilSuccess(fetchedProfile.data));
+  } catch (err) {
+    dispatch(actions.fetchProfilFailed(err.response.data));
+  }
+};
 
-export default { login, logout, auth, register };
+export default { login, logout, auth, register, fetchProfil };

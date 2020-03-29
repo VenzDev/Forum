@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import PostsList from "../components/PostsList";
 import CreatePost from "../components/CreatePost";
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ThreadPage = props => {
   const dispatch = useDispatch();
@@ -29,8 +30,10 @@ const ThreadPage = props => {
         <h2>{content}</h2>
       </div>
       <div className={s.userInfo}>
-        <FaUserCircle className={s.userAvatar} />
-        {user && <h2>{`${user.name}  ${user.surname}`}</h2>}
+        <Link className={s.link} to={user ? `/user/${user._id}` : "/login"}>
+          <FaUserCircle className={s.userAvatar} />
+          {user && <h2>{`${user.name}  ${user.surname}`}</h2>}
+        </Link>
         <p>{`Created at: ${date.toLocaleString()}`}</p>
       </div>
       <div className={s.line}></div>

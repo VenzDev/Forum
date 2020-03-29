@@ -43,6 +43,16 @@
     text-align: center;
     align-self: center;
 
+    & .link:visited,
+    .link:link,
+    .link:active {
+      color: black;
+      text-decoration: none;
+    }
+    & h2:hover {
+      color: $color-blue;
+    }
+
     & .userAvatar {
       font-size: 3rem;
       padding-bottom: 1rem;
@@ -74,4 +84,5 @@
 }
 .border {
   border: 2px solid $color-blue;
+  box-shadow: 0px 6px 12px rgba($color-blue, 0.4);
 }
