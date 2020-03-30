@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DeletePopup from "./DeletePopup";
 import EditPopup from "./EditPopup";
+import { Editor, EditorState, convertFromRaw } from "draft-js";
 
 const PostItem = ({ post }) => {
   const userState = useSelector(state => state.userReducer);
@@ -24,7 +25,7 @@ const PostItem = ({ post }) => {
   const handleDeleteClick = () => setDeletePopup(!isDeletePopup);
   const handleEditClick = () => setEditPopup(!isEditPopup);
   const date = new Date(post.createdAt);
-
+  const editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(post.content)));
   return (
     <>
       {isDeletePopup && (
@@ -39,7 +40,9 @@ const PostItem = ({ post }) => {
         />
       )}
       <div className={`${s.post} ${style}`}>
-        <div className={s.postContent}> {post.content}</div>
+        <div className={s.content}>
+          <Editor editorState={editorState} />
+        </div>
         <div className={s.userInfo}>
           <Link to={`/user/${post.user._id}`} className={s.link}>
             <FaUserCircle className={s.userAvatar} />

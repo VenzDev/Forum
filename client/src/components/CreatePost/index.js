@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import b from "../button.module.scss";
 import s from "./createpost.module.scss";
 import axios from "axios";
@@ -6,35 +6,35 @@ import showToast from "../../utils/showToast";
 import { useDispatch } from "react-redux";
 import { thread } from "../../redux/thread";
 import { createPostEndpoint } from "../../apiConfig";
+import RichEditor from "../RichEditor";
 
 const CreatePost = ({ threadId }) => {
-  const [post, setPost] = useState("");
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-  const handleChange = e => {
-    setPost(e.target.value);
+  let rawData = "";
+  const handleRichEditor = editorState => {
+    rawData = JSON.stringify(editorState);
   };
   const handleSubmit = () => {
-    if (post.trim(""))
-      axios
-        .post(
-          createPostEndpoint,
-          { content: post, threadId },
-          { headers: { Authorization: `Bearer ${token}` } }
-        )
-        .then(() => {
-          showToast("Post created!");
-          dispatch(thread.findThread(threadId));
-        });
+    axios
+      .post(
+        createPostEndpoint,
+        { content: rawData, threadId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then(() => {
+        showToast("Post created!");
+        dispatch(thread.findThread(threadId));
+      });
   };
 
   return (
     <div className={s.createPost}>
       <p>Create new Post</p>
-      <textarea onChange={handleChange} placeholder="New post..."></textarea>
+      <RichEditor handleRichEditor={handleRichEditor} />
       <button
         onClick={handleSubmit}
-        style={{ margin: "0 auto", padding: "1rem" }}
+        style={{ margin: "1rem auto", padding: "1rem" }}
         className={b.button}
       >
         Create

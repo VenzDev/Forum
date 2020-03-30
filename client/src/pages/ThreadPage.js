@@ -8,6 +8,7 @@ import PostsList from "../components/PostsList";
 import CreatePost from "../components/CreatePost";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Editor, EditorState, convertFromRaw } from "draft-js";
 
 const ThreadPage = props => {
   const dispatch = useDispatch();
@@ -15,6 +16,10 @@ const ThreadPage = props => {
   const userState = useSelector(state => state.userReducer);
   const { user, posts, name, content, createdAt } = threadState.thread;
   const date = new Date(createdAt);
+  if (content !== undefined) {
+    const obj = JSON.parse(content);
+    var editorState = EditorState.createWithContent(convertFromRaw(obj));
+  }
   useEffect(() => {
     dispatch(thread.findThread(props.match.params.id));
   }, [dispatch, props.match.params.id]);
@@ -26,8 +31,10 @@ const ThreadPage = props => {
   const RootPost = () => (
     <div className={`${s.container} ${style}`}>
       <div className={s.content}>
-        <h1>{name}</h1>
-        <h2>{content}</h2>
+        <h1 className={s.threadName}>{name}</h1>
+        {editorState !== undefined && (
+          <Editor className={s.editor} editorState={editorState} readOnly={true} />
+        )}
       </div>
       <div className={s.userInfo}>
         <Link className={s.link} to={user ? `/user/${user._id}` : "/login"}>

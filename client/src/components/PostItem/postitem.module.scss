@@ -12,6 +12,11 @@
   box-sizing: border-box;
   border-radius: 15px;
 
+  .content {
+    width: 75%;
+    font-size: 1.5rem;
+  }
+
   .link:visited,
   .link:active,
   .link:link {

@@ -13,7 +13,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .container {
   width: 100%;
   min-height: 300px;
@@ -28,14 +27,13 @@
 
   & .content {
     width: 75%;
+    font-size: 1.5rem;
 
-    & h1 {
+    & .threadName {
       width: 90%;
       padding: 1rem;
+      font-size: 2.4rem;
       border-bottom: 2px solid grey;
-    }
-    & h2 {
-      padding: 1rem;
     }
   }
   & .userInfo {

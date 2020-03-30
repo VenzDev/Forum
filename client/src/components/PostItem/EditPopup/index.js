@@ -8,11 +8,12 @@ import showToast from "../../../utils/showToast";
 import { editPostEndpoint } from "../../../apiConfig";
 import { useDispatch } from "react-redux";
 import { thread } from "../../../redux/thread";
+import RichEditor from "../../RichEditor";
 
 const EditPopup = ({ handleClick, text, threadId, id }) => {
   const [value, setValue] = useState(text);
   const dispatch = useDispatch();
-  const handleChange = e => setValue(e.target.value);
+  const handleRichEditor = rawData => setValue(JSON.stringify(rawData));
   const handleSubmit = () => {
     axios.post(editPostEndpoint, { content: value, id }).then(() => {
       dispatch(thread.findThread(threadId));
@@ -24,7 +25,7 @@ const EditPopup = ({ handleClick, text, threadId, id }) => {
       <div className={s.editPopup}>
         <MdClose onClick={handleClick} className={s.closeItem} />
         <p>Edit post</p>
-        <textarea onChange={handleChange} defaultValue={text}></textarea>
+        <RichEditor handleRichEditor={handleRichEditor} />
         <button
           onClick={handleSubmit}
           style={{ padding: "1rem", margin: "2rem auto" }}
