@@ -1,0 +1,23 @@
+@import "../../styles/config.scss";
+
+.richEditorContainer {
+  width: 90%;
+  height: 30vh;
+  background-color: white;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  border-radius: 26px;
+  border: 1px solid rgba($color: grey, $alpha: 0.5);
+  padding: 2rem;
+  overflow: auto;
+
+  & .public-DraftEditor-content {
+    min-height: 40vh;
+  }
+}
+.postContainer {
+  position: absolute;
+  top: 70vh;
+  left: 50%;
+  transform: translateX(-50%);
+}

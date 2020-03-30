@@ -7,17 +7,15 @@ import axios from "axios";
 import { createThreadEndpoint } from "../../apiConfig";
 import { withRouter } from "react-router-dom";
 import showToast from "../../utils/showToast";
-
+import RichEditor from "../RichEditor";
 const CreateThreadForm = props => {
   const { forums } = useSelector(state => state.forumReducer);
-
   let forumName = "React";
-
+  let rawData = "";
   const token = localStorage.getItem("token");
 
-  const handleChange = e => {
-    forumName = e.target.value;
-  };
+  const handleChange = e => (forumName = e.target.value);
+  const handleRichEditor = editorState => (rawData = JSON.stringify(editorState));
 
   const DropdownMenu = () => (
     <select onClick={handleChange} className={s.dropdown}>
@@ -34,15 +32,16 @@ const CreateThreadForm = props => {
 
   return (
     <div className={s.container}>
-      <h2>Create thread</h2>
+      <h2 className={s.title}>Create thread</h2>
       <DropdownMenu />
       <Formik
-        initialValues={{ threadTopic: "", content: "" }}
+        initialValues={{ threadTopic: "" }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log({ ...values, content: rawData, forumName });
           axios
             .post(
               createThreadEndpoint,
-              { ...values, forumName },
+              { ...values, content: rawData, forumName },
               {
                 headers: { Authorization: `Bearer ${token}` }
               }
@@ -60,7 +59,7 @@ const CreateThreadForm = props => {
             <p>Thread topic</p>
             <Field className={s.topicInput} type="text" name="threadTopic" />
             <p>Content</p>
-            <Field as="textarea" type="text" className={s.topicArea} name="content" />
+            <RichEditor handleRichEditor={handleRichEditor} />
             <button
               disabled={isSubmitting}
               type="submit"
