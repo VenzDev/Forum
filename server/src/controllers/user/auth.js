@@ -1,4 +1,5 @@
 import checkAuth from "../../utils/checkAuth";
+import User from "../../models/User";
 import { ErrorHandler } from "../../utils/error";
 
 export const auth = async (req, res, next) => {
@@ -6,7 +7,14 @@ export const auth = async (req, res, next) => {
     const token = req.headers.authorization;
     const { user, err } = checkAuth(token);
     const { id, email, name, surname } = user;
-    if (user) res.status(202).json({ id, email, name, surname });
+
+    const _user = await User.findById(id).populate({
+      path: "notifications",
+      populate: { path: "user", select: "_id name surname" }
+    });
+
+    if (user)
+      res.status(202).json({ id, email, name, surname, notifications: _user.notifications });
     else throw new ErrorHandler(400, err);
   } catch (err) {
     next(err);
