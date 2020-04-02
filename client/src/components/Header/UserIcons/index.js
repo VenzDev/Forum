@@ -8,13 +8,19 @@ import AvatarMenu from "../AvatarMenu";
 import { Link, withRouter } from "react-router-dom";
 import Messages from "../Messages";
 import Notifications from "../Notifications";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { deleteNotificationsEndpoint } from "../../../apiConfig";
 
 const UserIcons = ({ isUser, handleLogout, location }) => {
   //ugly but working :|
   const [isAvatarmenuOpen, setAvatarmenu] = useState(false);
   const [isMessagemenuOpen, setMessagemenu] = useState(false);
   const [isNotificationmenuOpen, setNotificationmenu] = useState(false);
+  const [isNotificationmenuChecked, setNotificationmenuChecked] = useState(false);
   const [path, setPath] = useState(location.pathname);
+  const userState = useSelector(state => state.userReducer);
+  const token = localStorage.getItem("token");
 
   //Hide menus after url change!
 
@@ -40,11 +46,24 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
   };
 
   const handleNotificationClick = () => {
+    axios
+      .get(deleteNotificationsEndpoint, { headers: { Authorization: `Bearer ${token}` } })
+      .then(() => {
+        setNotificationmenuChecked(true);
+      });
     setAvatarmenu(false);
     setMessagemenu(false);
     setNotificationmenu(!isNotificationmenuOpen);
   };
 
+  //TODO (need to change on something better )
+  let isNotification = false;
+  if (Object.keys(userState.user).length > 0)
+    if (userState.user.notifications.length > 0 && isNotificationmenuChecked === false)
+      isNotification = true;
+    else isNotification = false;
+  //
+  console.log(isNotificationmenuChecked);
   if (isUser) {
     return (
       <>
@@ -57,10 +76,10 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
           {isMessagemenuOpen && <Messages />}
           <MdNotificationsNone
             className={s.notificationIcon}
-            style={isNotificationmenuOpen && { color: "blue" }}
+            style={(isNotificationmenuOpen || isNotification) && { color: "blue" }}
             onClick={handleNotificationClick}
           />
-          {isNotificationmenuOpen && <Notifications />}
+          {isNotificationmenuOpen && <Notifications notifications={userState.user.notifications} />}
         </div>
         <div className={s.button}>
           <Link to={"/createThread"} style={{ width: "16rem" }} className={b.button}>

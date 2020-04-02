@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import InlineStyleControls from "./InlineStyleControls";
 import BlockStyleControls from "./BlockStyleControls";
-import { Editor, EditorState, convertToRaw, RichUtils } from "draft-js";
+import { Editor, EditorState, convertToRaw, convertFromRaw, RichUtils } from "draft-js";
 import "./richeditor.scss";
 
-const RichEditor = ({ handleRichEditor }) => {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+const RichEditor = ({ handleRichEditor, content }) => {
+  if (content) {
+    const obj = JSON.parse(content);
+    var state = EditorState.createWithContent(convertFromRaw(obj));
+  } else {
+    state = EditorState.createEmpty();
+  }
+
+  const [editorState, setEditorState] = useState(state);
   const [rawData, setRawData] = useState(null);
 
   const onChange = editorState => {

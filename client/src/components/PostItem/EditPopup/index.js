@@ -25,7 +25,7 @@ const EditPopup = ({ handleClick, text, threadId, id }) => {
       <div className={s.editPopup}>
         <MdClose onClick={handleClick} className={s.closeItem} />
         <p>Edit post</p>
-        <RichEditor handleRichEditor={handleRichEditor} />
+        <RichEditor content={text} handleRichEditor={handleRichEditor} />
         <button
           onClick={handleSubmit}
           style={{ padding: "1rem", margin: "2rem auto" }}

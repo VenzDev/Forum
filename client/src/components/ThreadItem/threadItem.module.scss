@@ -1,10 +1,42 @@
 @import "../../styles/config.scss";
 
 .container {
+  display: flex;
   position: relative;
-  height: 100px;
+  min-height: 100px;
   text-decoration: none;
   transition: 0.2s;
+
+  & .threadInfo {
+    padding-left: 2rem;
+    width: 60%;
+  }
+  & .additional {
+    width: 40%;
+    align-self: center;
+    font-size: 1.1rem;
+
+    & .additionalDesc {
+      display: flex;
+      & h3 {
+        width: 25%;
+        padding-bottom: 1rem;
+      }
+      & .lastH3 {
+        width: 50%;
+      }
+    }
+    & .additionalStat {
+      display: flex;
+      & h3 {
+        width: 25%;
+        font-weight: normal;
+      }
+      & .lastH3 {
+        width: 50%;
+      }
+    }
+  }
 
   &:visited,
   &:active,

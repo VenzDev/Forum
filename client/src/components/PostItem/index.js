@@ -41,7 +41,7 @@ const PostItem = ({ post }) => {
       )}
       <div className={`${s.post} ${style}`}>
         <div className={s.content}>
-          <Editor editorState={editorState} />
+          <Editor editorState={editorState} readOnly={true} />
         </div>
         <div className={s.userInfo}>
           <Link to={`/user/${post.user._id}`} className={s.link}>
