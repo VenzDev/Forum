@@ -7,7 +7,7 @@ export const search = async (req, res, next) => {
     console.log(data);
     const reg = new RegExp(data);
     const findedUsers = await User.find({ name: { $regex: reg, $options: "i" } }).select(
-      "name _id"
+      "name surname _id"
     );
     const findedThreads = await Thread.find({ name: { $regex: reg, $options: "i" } }).select(
       "name _id"
