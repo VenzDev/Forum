@@ -8,7 +8,7 @@ import EditPopup from "./EditPopup";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 
 const PostItem = ({ post }) => {
-  const userState = useSelector(state => state.userReducer);
+  const userState = useSelector((state) => state.userReducer);
   const [isDeletePopup, setDeletePopup] = useState(false);
   const [isEditPopup, setEditPopup] = useState(false);
   let style = "";
@@ -26,6 +26,13 @@ const PostItem = ({ post }) => {
   const handleEditClick = () => setEditPopup(!isEditPopup);
   const date = new Date(post.createdAt);
   const editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(post.content)));
+
+  const editorStyle = (contentBlock) => {
+    const type = contentBlock.getType();
+    if (type === "code-block") {
+      return "codeBlockStyle";
+    }
+  };
   return (
     <>
       {isDeletePopup && (
@@ -41,7 +48,7 @@ const PostItem = ({ post }) => {
       )}
       <div className={`${s.post} ${style}`}>
         <div className={s.content}>
-          <Editor editorState={editorState} readOnly={true} />
+          <Editor blockStyleFn={editorStyle} editorState={editorState} readOnly={true} />
         </div>
         <div className={s.userInfo}>
           <Link to={`/user/${post.user._id}`} className={s.link}>

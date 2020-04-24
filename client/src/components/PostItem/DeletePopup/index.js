@@ -35,5 +35,5 @@ const DeletePopup = ({ handleClick, id, threadId }) => {
     </Popup>
   );
 };
-
+ 
 export default DeletePopup;

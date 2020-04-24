@@ -10,10 +10,10 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 
-const ThreadPage = props => {
+const ThreadPage = (props) => {
   const dispatch = useDispatch();
-  const threadState = useSelector(state => state.threadReducer);
-  const userState = useSelector(state => state.userReducer);
+  const threadState = useSelector((state) => state.threadReducer);
+  const userState = useSelector((state) => state.userReducer);
   const { user, posts, name, content, createdAt } = threadState.thread;
   const date = new Date(createdAt);
   if (content !== undefined) {
@@ -28,12 +28,24 @@ const ThreadPage = props => {
   if (user && userState.user.id === user._id) style = s.border;
   else style = "";
 
+  const codeStyle = (contentBlock) => {
+    const type = contentBlock.getType();
+    if (type === "code-block") {
+      return "codeBlockStyle";
+    }
+  };
+
   const RootPost = () => (
     <div className={`${s.container} ${style}`}>
       <div className={s.content}>
         <h1 className={s.threadName}>{name}</h1>
         {editorState !== undefined && (
-          <Editor className={s.editor} editorState={editorState} readOnly={true} />
+          <Editor
+            blockStyleFn={codeStyle}
+            className={s.editor}
+            editorState={editorState}
+            readOnly={true}
+          />
         )}
       </div>
       <div className={s.userInfo}>

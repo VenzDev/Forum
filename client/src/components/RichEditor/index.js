@@ -15,17 +15,24 @@ const RichEditor = ({ handleRichEditor, content }) => {
   const [editorState, setEditorState] = useState(state);
   const [rawData, setRawData] = useState(null);
 
-  const onChange = editorState => {
+  const onChange = (editorState) => {
     setEditorState(editorState);
     setRawData(convertToRaw(editorState.getCurrentContent()));
     handleRichEditor(rawData);
   };
 
-  const toggleInlineStyle = inlineStyle => {
+  const toggleInlineStyle = (inlineStyle) => {
     onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
   };
-  const toggleBlockType = blockType => {
+  const toggleBlockType = (blockType) => {
     onChange(RichUtils.toggleBlockType(editorState, blockType));
+  };
+
+  const codeBlockStyle = (contentBlock) => {
+    const type = contentBlock.getType();
+    if (type === "code-block") {
+      return "codeBlockStyle";
+    }
   };
 
   return (
@@ -33,7 +40,12 @@ const RichEditor = ({ handleRichEditor, content }) => {
       <div className="richEditorContainer">
         <BlockStyleControls editorState={editorState} onToggle={toggleBlockType} />
         <InlineStyleControls editorState={editorState} onToggle={toggleInlineStyle} />
-        <Editor editorState={editorState} placeholder="Your post..." onChange={onChange}></Editor>
+        <Editor
+          blockStyleFn={codeBlockStyle}
+          editorState={editorState}
+          placeholder="Your post..."
+          onChange={onChange}
+        ></Editor>
       </div>
     </>
   );
