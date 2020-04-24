@@ -9,7 +9,9 @@ const SearchList = ({ data }) => {
     <ul className={s.searchlist}>
       {data.users.map((user, key) => (
         <li className={s.listItem} key={key}>
-          <Link to={`/user/${user._id}`}>{user.name}</Link>
+          <Link className={s.linkStyle} to={`/user/${user._id}`}>
+            {user.name + " " + user.surname}
+          </Link>
           <FaUserAlt className={s.listicon} />
         </li>
       ))}
