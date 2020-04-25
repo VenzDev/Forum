@@ -11,6 +11,8 @@ import CreateThreadPage from "./pages/CreateThreadPage";
 import ThreadPage from "./pages/ThreadPage";
 import ThreadsPage from "./pages/ThreadsPage";
 import UserPage from "./pages/UserPage";
+import UserThreads from "./pages/UserThreads";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route exact path="/user/:id" component={UserPage}></Route>
             <Route exact path="/thread/:id" component={ThreadPage}></Route>
             <Route exact path="/forgot" component={forgotPasswordPage}></Route>
+            <Route exact path="/yourThreads" component={UserThreads}></Route>
+            <Route component={ErrorPage} />
           </Switch>
         </Wrapper>
       </BrowserRouter>
