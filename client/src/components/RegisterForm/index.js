@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./register.module.scss";
 import { Formik, Form, Field } from "formik";
@@ -8,10 +8,14 @@ import { withRouter } from "react-router-dom";
 import showToast from "../../utils/showToast";
 import Loader from "react-loader-spinner";
 
-const RegisterForm = props => {
+const RegisterForm = (props) => {
   const dispatch = useDispatch();
 
-  const userState = useSelector(state => state.userReducer);
+  useEffect(() => {
+    dispatch(user.clearErrorMessage());
+  }, [dispatch]);
+
+  const userState = useSelector((state) => state.userReducer);
   let errorMessage = userState.error.message;
 
   let style = `${s.container}`;
@@ -26,7 +30,7 @@ const RegisterForm = props => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            zIndex: "1000"
+            zIndex: "1000",
           }}
           type="BallTriangle"
           color="blue"
@@ -35,7 +39,7 @@ const RegisterForm = props => {
     } else style = `${s.container}`;
   };
 
-  const handleSuccess = type => {
+  const handleSuccess = (type) => {
     if (type === userTypes.REGISTER_REQUEST_SUCCESS) {
       showToast("Successfully Registered!");
       props.history.push("/login");
@@ -52,7 +56,7 @@ const RegisterForm = props => {
           onSubmit={(values, { setSubmitting }) => {
             if (values.password !== values.confirmPassword)
               errorMessage = "password and confirm password not equal";
-            else dispatch(user.register(values)).then(res => handleSuccess(res.type));
+            else dispatch(user.register(values)).then((res) => handleSuccess(res.type));
             setSubmitting(false);
           }}
         >

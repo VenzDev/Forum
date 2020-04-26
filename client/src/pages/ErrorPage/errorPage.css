@@ -14,7 +14,7 @@
 .st4,
 .st6 {
   fill: #fff;
-  stroke: #b3dcdf;
+  stroke: #008cff;
   stroke-miterlimit: 10;
 }
 .st6 {
@@ -39,8 +39,6 @@
 }
 .st9 {
   fill: none;
-}
-.st10 {
 }
 
 #cloud1 {
@@ -73,6 +71,9 @@
 
 #bumps {
   animation: land 10000ms linear infinite;
+}
+#water {
+  fill: #008cff;
 }
 
 @keyframes jig {

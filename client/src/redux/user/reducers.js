@@ -4,13 +4,13 @@ const initUserState = {
   user: {},
   loading: false,
   error: { message: "" },
-  tokenInfo: null
+  tokenInfo: null,
 };
 
 const fetchProfilState = {
   user: {},
   loading: false,
-  error: { message: "" }
+  error: { message: "" },
 };
 
 const userReducer = (state = initUserState, action) => {
@@ -30,6 +30,8 @@ const userReducer = (state = initUserState, action) => {
     case types.AUTH:
       return { ...state, loading: false, user: action.payload, error: { message: "" } };
     case types.LOGOUT:
+      return { ...initUserState };
+    case types.CLEAR_ERROR_MESSAGE:
       return { ...initUserState };
     default:
       return state;

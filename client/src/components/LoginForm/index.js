@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { Link, withRouter } from "react-router-dom";
@@ -19,6 +19,10 @@ const LoginForm = (props) => {
       props.history.push("/");
     }
   };
+
+  useEffect(() => {
+    dispatch(user.clearErrorMessage());
+  }, [dispatch]);
 
   let style = `${s.container}`;
 

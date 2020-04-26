@@ -276,7 +276,7 @@ const ErrorPage = () => {
             />
           </g>
           <g id="train">
-            <path fill="#b3dcdf" d="M344.5 248.5h507.2v37.8H344.5z" />
+            <path fill="#008cff" d="M344.5 248.5h507.2v37.8H344.5z" />
             <g id="wheels">
               <circle className="st6" cx="384.1" cy="285.6" r="15.1" />
               <path

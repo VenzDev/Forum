@@ -4,10 +4,10 @@ import {
   loginEndpoint,
   registerEndpoint,
   authEndpoint,
-  fetchProfilEndpoint
+  fetchProfilEndpoint,
 } from "../../apiConfig";
 
-const register = data => async dispatch => {
+const register = (data) => async (dispatch) => {
   try {
     dispatch(actions.registerRequestPending());
     const fetchedData = await axios.post(registerEndpoint, { ...data });
@@ -17,7 +17,11 @@ const register = data => async dispatch => {
   }
 };
 
-const login = data => async dispatch => {
+const clearErrorMessage = () => (dispatch) => {
+  dispatch(actions.clearErrorMessage());
+};
+
+const login = (data) => async (dispatch) => {
   try {
     dispatch(actions.loginRequestPending());
     const fetchedData = await axios.post(loginEndpoint, { ...data });
@@ -30,12 +34,12 @@ const login = data => async dispatch => {
     if (err) return dispatch(actions.loginRequestFailed(err.response.data));
   }
 };
-const logout = () => dispatch => dispatch(actions.logout());
-const auth = () => async dispatch => {
+const logout = () => (dispatch) => dispatch(actions.logout());
+const auth = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     const fetchedProfile = await axios.get(authEndpoint, {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     });
     if (fetchedProfile) dispatch(actions.auth(fetchedProfile.data));
     else localStorage.removeItem("token");
@@ -45,7 +49,7 @@ const auth = () => async dispatch => {
     }
   }
 };
-const fetchProfil = id => async dispatch => {
+const fetchProfil = (id) => async (dispatch) => {
   try {
     dispatch(actions.fetchProfilPending());
     const fetchedProfile = await axios.get(fetchProfilEndpoint + id);
@@ -55,4 +59,4 @@ const fetchProfil = id => async dispatch => {
   }
 };
 
-export default { login, logout, auth, register, fetchProfil };
+export default { login, logout, auth, register, fetchProfil, clearErrorMessage };
