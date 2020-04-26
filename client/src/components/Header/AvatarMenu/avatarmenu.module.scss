@@ -11,6 +11,10 @@
   border-radius: 6px;
   cursor: default;
 
+  @include respond(big-desktop) {
+    width: 230px;
+    height: 300px;
+  }
   & h1 {
     font-weight: normal;
     margin: 0;

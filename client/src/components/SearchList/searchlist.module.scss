@@ -23,7 +23,8 @@
   transition: 0.2s;
 
   &:active,
-  &:visited {
+  &:visited,
+  &:link {
     color: black;
   }
 

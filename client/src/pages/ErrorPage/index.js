@@ -28,8 +28,8 @@ const ErrorPage = () => {
               x2="500"
               y2="200.667"
             >
-              <stop offset="0" stop-color="#fff" />
-              <stop offset="1" stop-color="#b3dcdf" />
+              <stop offset="0" stopColor="#fff" />
+              <stop offset="1" stopColor="#b3dcdf" />
             </linearGradient>
             <path id="water" fill="url(#water_1_)" d="M0 200.7h1000V354H0z" />
             <path id="land" className="st0" d="M0 273.4h1000V354H0z" />
@@ -331,10 +331,10 @@ const ErrorPage = () => {
               </g>
               <path className="st9" d="M320.3 257.8h549.9" />
               <g id="Text">
-                <text transform="translate(377.037 230.025)" className="st8 st10" font-size="21">
+                <text transform="translate(377.037 230.025)" className="st8 st10" fontSize="21">
                   404
                 </text>
-                <text transform="translate(659.5 213.994)" className="st8 st10" font-size="24.025">
+                <text transform="translate(659.5 213.994)" className="st8 st10" fontSize="24.025">
                   Page not found.
                 </text>
               </g>

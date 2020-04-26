@@ -8,9 +8,9 @@ import { user, userTypes } from "../../redux/user";
 import showToast from "../../utils/showToast";
 import Loader from "react-loader-spinner";
 
-const LoginForm = props => {
+const LoginForm = (props) => {
   const dispatch = useDispatch();
-  const userData = useSelector(state => state.userReducer, []);
+  const userData = useSelector((state) => state.userReducer, []);
   const errorMessage = userData.error.message;
 
   const redirectOnSuccessLogin = (type, name) => {
@@ -32,7 +32,7 @@ const LoginForm = props => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            zIndex: "1000"
+            zIndex: "1000",
           }}
           type="BallTriangle"
           color="blue"
@@ -49,7 +49,7 @@ const LoginForm = props => {
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
-            dispatch(user.login(values)).then(res =>
+            dispatch(user.login(values)).then((res) =>
               redirectOnSuccessLogin(res.type, res.payload.name)
             );
             setSubmitting(false);
@@ -75,7 +75,7 @@ const LoginForm = props => {
               <p className={s.textField}>
                 Don't have account?{" "}
                 <Link className={s.signup} to="/register">
-                  Sing up
+                  Sign up
                 </Link>
               </p>
               {!!errorMessage && (
