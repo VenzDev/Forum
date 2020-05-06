@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ThreadsList from "../components/ThreadsList";
 import axios from "axios";
 import Loader from "react-loader-spinner";
+import { fetchUserThreadsEndpoint } from "../apiConfig";
 
 const UserThreads = () => {
   const [loading, setLoading] = useState(false);
@@ -10,7 +11,7 @@ const UserThreads = () => {
   useEffect(() => {
     const fetchUserThreads = async () => {
       setLoading(true);
-      const res = await axios.get("http://localhost:3000/findUserThreads", {
+      const res = await axios.get(fetchUserThreadsEndpoint, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserThreads(res.data);

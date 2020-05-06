@@ -12,3 +12,4 @@ export const deletePostEndpoint = url + "/deletePost";
 export const editPostEndpoint = url + "/editPost";
 export const fetchProfilEndpoint = url + "/fetchProfil?id=";
 export const deleteNotificationsEndpoint = url + "/deleteNotifications";
+export const fetchUserThreadsEndpoint = url + "/findUserThreads";
