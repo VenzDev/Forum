@@ -52,6 +52,15 @@
     }
   }
 }
+.admin {
+  color: $color-blue;
+  position: relative;
+  flex-basis: 10%;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  font-size: 2rem;
+}
 .active {
   color: $color-blue;
 }

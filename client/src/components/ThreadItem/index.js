@@ -1,7 +1,8 @@
 import React from "react";
 import s from "./threadItem.module.scss";
 import { Link } from "react-router-dom";
-const ThreadItem = ({ thread }) => {
+import { FaTrash } from "react-icons/fa";
+const ThreadItem = ({ thread, isAdmin }) => {
   const date = new Date(thread.createdAt);
   let postDate = null;
   if (thread.posts.length > 0) postDate = new Date(thread.posts[thread.posts.length - 1].createdAt);
@@ -27,6 +28,15 @@ const ThreadItem = ({ thread }) => {
           <h3 className={s.lastH3}>{`${thread.user.name} ${thread.user.surname}`}</h3>
         </div>
       </div>
+      <FaTrash
+        style={{
+          position: "absolute",
+          right: "20px",
+          top: "50%",
+          fontSize: "1.5rem",
+          transform: "translateY(-50%)",
+        }}
+      />
       <div className={s.line}></div>
     </Link>
   );

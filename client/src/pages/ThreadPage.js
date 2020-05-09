@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { thread } from "../redux/thread";
@@ -8,10 +8,14 @@ import PostsList from "../components/PostsList";
 import CreatePost from "../components/CreatePost";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
+import { AiOutlineCrown } from "react-icons/ai";
 
 const ThreadPage = (props) => {
   const dispatch = useDispatch();
+  const [isDeletePopup, setDeletePopup] = useState(false);
+  const [isEditPopup, setEditPopup] = useState(false);
   const threadState = useSelector((state) => state.threadReducer);
   const userState = useSelector((state) => state.userReducer);
   const { user, posts, name, content, createdAt } = threadState.thread;
@@ -23,10 +27,25 @@ const ThreadPage = (props) => {
   useEffect(() => {
     dispatch(thread.findThread(props.match.params.id));
   }, [dispatch, props.match.params.id]);
+  let owner = false;
 
   let style = "";
   if (user && userState.user.id === user._id) style = s.border;
   else style = "";
+
+  if (user && userState.user.id === user._id) {
+    style = s.border;
+    owner = true;
+  } else if (userState.user.isAdmin) {
+    style = "";
+    owner = true;
+  } else {
+    owner = false;
+    style = "";
+  }
+
+  const handleDeleteClick = () => setDeletePopup(!isDeletePopup);
+  const handleEditClick = () => setEditPopup(!isEditPopup);
 
   const codeStyle = (contentBlock) => {
     const type = contentBlock.getType();
@@ -53,7 +72,19 @@ const ThreadPage = (props) => {
           <FaUserCircle className={s.userAvatar} />
           {user && <h2>{`${user.name}  ${user.surname}`}</h2>}
         </Link>
+        {userState.user.isAdmin && (
+          <div style={{ marginTop: "1rem", fontSize: "1.5rem", color: "blue" }}>
+            Admin
+            <AiOutlineCrown style={{ marginLeft: "5px", fontSize: "20px" }} />
+          </div>
+        )}
         <p>{`Created at: ${date.toLocaleString()}`}</p>
+        {owner && (
+          <p className={s.editThread} style={{ fontSize: "2rem" }}>
+            <FaEdit onClick={handleEditClick} className={s.editIcon} />
+            <FaTrash onClick={handleDeleteClick} className={s.deleteIcon} />
+          </p>
+        )}
       </div>
       <div className={s.line}></div>
     </div>

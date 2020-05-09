@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DeletePopup from "./DeletePopup";
 import EditPopup from "./EditPopup";
+import { AiOutlineCrown } from "react-icons/ai";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 
 const PostItem = ({ post }) => {
@@ -17,9 +18,12 @@ const PostItem = ({ post }) => {
   if (userState.user.id === post.user._id) {
     style = s.border;
     owner = true;
-  } else {
+  } else if (userState.user.isAdmin) {
     style = "";
+    owner = true;
+  } else {
     owner = false;
+    style = "";
   }
 
   const handleDeleteClick = () => setDeletePopup(!isDeletePopup);
@@ -55,6 +59,12 @@ const PostItem = ({ post }) => {
             <FaUserCircle className={s.userAvatar} />
             <h2>{`${post.user.name}  ${post.user.surname}`}</h2>
           </Link>
+          {post.user.isAdmin && (
+            <div style={{ marginTop: "1rem", fontSize: "1.5rem", color: "blue" }}>
+              Admin
+              <AiOutlineCrown style={{ marginLeft: "5px", fontSize: "20px" }} />
+            </div>
+          )}
           <p>{`Created at: ${date.toLocaleString()}`}</p>
           {owner && (
             <p className={s.editPost}>

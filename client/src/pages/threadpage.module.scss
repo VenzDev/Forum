@@ -87,3 +87,23 @@
 .codeBlockStyle {
   background-color: rgb(204, 204, 204);
 }
+
+.editThread {
+  display: flex;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  justify-content: space-around;
+
+  & .editIcon,
+  .deleteIcon {
+    transition: 0.2s;
+  }
+  & .editIcon:hover {
+    color: $color-blue;
+    cursor: pointer;
+  }
+  & .deleteIcon:hover {
+    color: red;
+    cursor: pointer;
+  }
+}

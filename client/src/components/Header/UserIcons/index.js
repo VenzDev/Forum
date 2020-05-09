@@ -4,6 +4,7 @@ import b from "../../button.module.scss";
 import { FiMessageCircle } from "react-icons/fi";
 import { MdNotificationsNone } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
+import { AiOutlineCrown } from "react-icons/ai";
 import AvatarMenu from "../AvatarMenu";
 import { Link, withRouter } from "react-router-dom";
 import Messages from "../Messages";
@@ -19,7 +20,7 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
   const [isNotificationmenuOpen, setNotificationmenu] = useState(false);
   const [isNotificationmenuChecked, setNotificationmenuChecked] = useState(false);
   const [path, setPath] = useState(location.pathname);
-  const userState = useSelector(state => state.userReducer);
+  const userState = useSelector((state) => state.userReducer);
   const token = localStorage.getItem("token");
 
   //Hide menus after url change!
@@ -93,6 +94,12 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
           />
           {isAvatarmenuOpen && <AvatarMenu />}
         </div>
+        {userState.user.isAdmin && (
+          <div className={s.admin}>
+            {"admin"}
+            <AiOutlineCrown style={{ marginLeft: "5px", fontSize: "25px" }} />
+          </div>
+        )}
       </>
     );
   } else {
