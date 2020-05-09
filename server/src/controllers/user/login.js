@@ -16,7 +16,7 @@ export const login = async (req, res, next) => {
 
     const _user = await User.findOne({ email }).populate({
       path: "notifications",
-      populate: { path: "user", select: "_id name surname" }
+      populate: { path: "user", select: "_id name surname" },
     });
     let correctPassword = false;
 
@@ -24,9 +24,9 @@ export const login = async (req, res, next) => {
     if (_user) correctPassword = await bc.compare(password, _user.password);
 
     if (correctPassword) {
-      const { _id, name, surname, email, notifications } = _user;
+      const { _id, name, surname, email, notifications, isAdmin } = _user;
       const token = generateToken({ id: _id, name, surname, email });
-      res.status(201).json({ id: _id, name, surname, email, notifications, token });
+      res.status(201).json({ id: _id, name, surname, email, notifications, token, isAdmin });
     } else {
       throw new ErrorHandler(422, "Invalid password or email");
     }
