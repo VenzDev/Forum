@@ -7,7 +7,7 @@ export const findThread = async (req, res, next) => {
     const thread = await Thread.findById(id)
       .populate({
         path: "posts",
-        populate: { path: "user", select: "_id name surname" }
+        populate: { path: "user", select: "_id name surname isAdmin" },
       })
       .populate({ path: "user", select: "_id name surname" });
     if (thread) res.status(201).json(thread);
