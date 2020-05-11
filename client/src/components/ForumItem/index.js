@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./forumitem.module.scss";
 import { UndrawReact } from "react-undraw";
 import { Link } from "react-router-dom";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import EditPopup from "./EditPopup";
 
 const ForumItem = ({ forum, admin }) => {
-  const handleEditClick = () => {
-    console.log("xd");
-  };
+  const [isPopup, setPopup] = useState(false);
+
+  const handlePopupOpen = () => setPopup(true);
   const handleDeleteClick = () => {
     console.log("xd");
   };
+  const handlePopupClose = () => setPopup(false);
   return (
     <>
+      {isPopup && <EditPopup handleClose={handlePopupClose} forum={forum} />}
       <div className={s.forumItem}>
         <Link to={`/forum/${forum.name}`} className={s.forumDesc}>
           <UndrawReact style={{ height: "100%", width: "200px", marginLeft: "2rem" }} />
@@ -29,7 +32,7 @@ const ForumItem = ({ forum, admin }) => {
         <div className={s.vertiaclLine}></div>
         {admin && (
           <p className={s.editForum}>
-            <FaEdit onClick={handleEditClick} className={s.editIcon} />
+            <FaEdit onClick={handlePopupOpen} className={s.editIcon} />
             <FaTrash
               style={{ marginLeft: "10px" }}
               onClick={handleDeleteClick}

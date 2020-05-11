@@ -72,7 +72,7 @@ const ThreadPage = (props) => {
           <FaUserCircle className={s.userAvatar} />
           {user && <h2>{`${user.name}  ${user.surname}`}</h2>}
         </Link>
-        {userState.user.isAdmin && (
+        {user && user.isAdmin && (
           <div style={{ marginTop: "1rem", fontSize: "1.5rem", color: "blue" }}>
             Admin
             <AiOutlineCrown style={{ marginLeft: "5px", fontSize: "20px" }} />

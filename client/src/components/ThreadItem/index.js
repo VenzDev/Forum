@@ -28,15 +28,17 @@ const ThreadItem = ({ thread, isAdmin }) => {
           <h3 className={s.lastH3}>{`${thread.user.name} ${thread.user.surname}`}</h3>
         </div>
       </div>
-      <FaTrash
-        style={{
-          position: "absolute",
-          right: "20px",
-          top: "50%",
-          fontSize: "1.5rem",
-          transform: "translateY(-50%)",
-        }}
-      />
+      {isAdmin && (
+        <FaTrash
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: "50%",
+            fontSize: "1.5rem",
+            transform: "translateY(-50%)",
+          }}
+        />
+      )}
       <div className={s.line}></div>
     </Link>
   );
