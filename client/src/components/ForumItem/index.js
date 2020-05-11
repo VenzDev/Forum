@@ -4,18 +4,20 @@ import { UndrawReact } from "react-undraw";
 import { Link } from "react-router-dom";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import EditPopup from "./EditPopup";
+import DeletePopup from "./DeletePopup";
 
 const ForumItem = ({ forum, admin }) => {
-  const [isPopup, setPopup] = useState(false);
+  const [isEditPopup, setEditPopup] = useState(false);
+  const [isDeletePopup, setDeletePopup] = useState(false);
 
-  const handlePopupOpen = () => setPopup(true);
-  const handleDeleteClick = () => {
-    console.log("xd");
-  };
-  const handlePopupClose = () => setPopup(false);
+  const handlePopupOpen = () => setEditPopup(true);
+  const handleDeleteOpen = () => setDeletePopup(true);
+  const handleDeleteClose = () => setDeletePopup(false);
+  const handlePopupClose = () => setEditPopup(false);
   return (
     <>
-      {isPopup && <EditPopup handleClose={handlePopupClose} forum={forum} />}
+      {isEditPopup && <EditPopup handleClose={handlePopupClose} forum={forum} />}
+      {isDeletePopup && <DeletePopup handleClose={handleDeleteClose} forum={forum} />}
       <div className={s.forumItem}>
         <Link to={`/forum/${forum.name}`} className={s.forumDesc}>
           <UndrawReact style={{ height: "100%", width: "200px", marginLeft: "2rem" }} />
@@ -35,7 +37,7 @@ const ForumItem = ({ forum, admin }) => {
             <FaEdit onClick={handlePopupOpen} className={s.editIcon} />
             <FaTrash
               style={{ marginLeft: "10px" }}
-              onClick={handleDeleteClick}
+              onClick={handleDeleteOpen}
               className={s.deleteIcon}
             />
           </p>
