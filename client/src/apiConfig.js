@@ -9,7 +9,7 @@ export const createThreadEndpoint = url + "/createThread";
 export const findThreadEndpoint = "http://localhost:3000/findThread?id=";
 export const createPostEndpoint = url + "/createPost";
 export const deletePostEndpoint = url + "/deletePost";
-export const editPostEndpoint = url + "/editPost";
+export const editPostEndpoint = "http://localhost:3000/editPost";
 export const fetchProfilEndpoint = url + "/fetchProfil?id=";
 export const deleteNotificationsEndpoint = url + "/deleteNotifications";
 export const fetchUserThreadsEndpoint = url + "/findUserThreads";

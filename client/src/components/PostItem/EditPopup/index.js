@@ -10,12 +10,12 @@ import { useDispatch } from "react-redux";
 import { thread } from "../../../redux/thread";
 import RichEditor from "../../RichEditor";
 
-const EditPopup = ({ handleClick, text, threadId, id }) => {
+const EditPopup = ({ handleClick, text, threadId, id, isAdmin }) => {
   const [value, setValue] = useState(text);
   const dispatch = useDispatch();
-  const handleRichEditor = rawData => setValue(JSON.stringify(rawData));
+  const handleRichEditor = (rawData) => setValue(JSON.stringify(rawData));
   const handleSubmit = () => {
-    axios.post(editPostEndpoint, { content: value, id }).then(() => {
+    axios.post(editPostEndpoint, { content: value, id, isAdmin }).then(() => {
       dispatch(thread.findThread(threadId));
       showToast("Post Edited!");
     });

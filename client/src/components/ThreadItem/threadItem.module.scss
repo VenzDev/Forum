@@ -10,11 +10,31 @@
   & .threadInfo {
     padding-left: 2rem;
     width: 60%;
+
+    &:visited,
+    &:active,
+    &:focus,
+    &:link {
+      color: black;
+    }
+    &:hover {
+      color: $color-blue;
+    }
   }
   & .additional {
     width: 40%;
     align-self: center;
     font-size: 1.1rem;
+
+    &:visited,
+    &:active,
+    &:focus,
+    &:link {
+      color: black;
+    }
+    &:hover {
+      color: $color-blue;
+    }
 
     & .additionalDesc {
       display: flex;
@@ -36,16 +56,6 @@
         width: 50%;
       }
     }
-  }
-
-  &:visited,
-  &:active,
-  &:focus,
-  &:link {
-    color: black;
-  }
-  &:hover {
-    color: $color-blue;
   }
 
   & h2 {

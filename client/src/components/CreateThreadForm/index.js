@@ -8,21 +8,21 @@ import { createThreadEndpoint } from "../../apiConfig";
 import { withRouter } from "react-router-dom";
 import showToast from "../../utils/showToast";
 import RichEditor from "../RichEditor";
-const CreateThreadForm = props => {
-  const { forums } = useSelector(state => state.forumReducer);
+const CreateThreadForm = (props) => {
+  const { forums } = useSelector((state) => state.forumReducer);
   let forumName = "React";
   let rawData = "";
   const token = localStorage.getItem("token");
 
-  const handleChange = e => (forumName = e.target.value);
-  const handleRichEditor = editorState => (rawData = JSON.stringify(editorState));
+  const handleChange = (e) => (forumName = e.target.value);
+  const handleRichEditor = (editorState) => (rawData = JSON.stringify(editorState));
 
   const DropdownMenu = () => (
     <select onClick={handleChange} className={s.dropdown}>
       <option default disabled>
         Select forum
       </option>
-      {forums.map(forum => (
+      {forums.map((forum) => (
         <option value={forum.name} key={forum._id}>
           {forum.name}
         </option>
@@ -43,14 +43,14 @@ const CreateThreadForm = props => {
               createThreadEndpoint,
               { ...values, content: rawData, forumName },
               {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { Authorization: `Bearer ${token}` },
               }
             )
-            .then(res => {
+            .then((res) => {
               showToast("Thread created successfully!");
               props.history.push("/thread/" + res.data._id);
             })
-            .catch(err => {});
+            .catch((err) => {});
           setSubmitting(false);
         }}
       >
@@ -59,7 +59,9 @@ const CreateThreadForm = props => {
             <p>Thread topic</p>
             <Field className={s.topicInput} type="text" name="threadTopic" />
             <p>Content</p>
-            <RichEditor handleRichEditor={handleRichEditor} />
+            <div style={{ width: "90%", margin: "0 auto" }}>
+              <RichEditor handleRichEditor={handleRichEditor} />
+            </div>
             <button
               disabled={isSubmitting}
               type="submit"

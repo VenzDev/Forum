@@ -29,6 +29,7 @@ const PostItem = ({ post }) => {
   const handleDeleteClick = () => setDeletePopup(!isDeletePopup);
   const handleEditClick = () => setEditPopup(!isEditPopup);
   const date = new Date(post.createdAt);
+  const editAdminDate = new Date(post.updatedAt);
   const editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(post.content)));
 
   const editorStyle = (contentBlock) => {
@@ -48,11 +49,17 @@ const PostItem = ({ post }) => {
           text={post.content}
           threadId={post.thread}
           id={post._id}
+          isAdmin={userState.user.isAdmin}
         />
       )}
       <div className={`${s.post} ${style}`}>
         <div className={s.content}>
           <Editor blockStyleFn={editorStyle} editorState={editorState} readOnly={true} />
+          {post.editedByAdmin === true && (
+            <p
+              style={{ fontWeight: "bold", color: "blue" }}
+            >{`Edited by Admin, ${editAdminDate.toLocaleString()}`}</p>
+          )}
         </div>
         <div className={s.userInfo}>
           <Link to={`/user/${post.user._id}`} className={s.link}>
