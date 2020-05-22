@@ -3,15 +3,28 @@ import Popup from "../../Popup";
 import s from "./editpopup.module.scss";
 import b from "../../button.module.scss";
 import { MdClose } from "react-icons/md";
+import { forum as forumRedux } from "../../../redux/forum";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import showToast from "../../../utils/showToast";
 
 const EditPopup = ({ forum, handleClose }) => {
   const [name, setName] = useState(forum.name);
   const [description, setDescription] = useState(forum.description);
 
+  const dispatch = useDispatch();
+
   const handleName = (e) => setName(e.target.value);
   const handleDesc = (e) => setDescription(e.target.value);
   const handleSubmit = (e) => {
-    console.log("todo");
+    axios
+      .post("http://localhost:3000/editForum", { id: forum._id, name, description })
+      .then((response) => {
+        if (response.status === 202) {
+          showToast("Forum Edited successfully");
+          dispatch(forumRedux.fetchForums());
+        }
+      });
   };
   return (
     <Popup>

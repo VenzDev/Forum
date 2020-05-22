@@ -57,7 +57,7 @@ const PostItem = ({ post }) => {
           <Editor blockStyleFn={editorStyle} editorState={editorState} readOnly={true} />
           {post.editedByAdmin === true && (
             <p
-              style={{ fontWeight: "bold", color: "blue" }}
+              style={{ marginTop: "10px", fontWeight: "bold", fontSize: "1rem", color: "blue" }}
             >{`Edited by Admin, ${editAdminDate.toLocaleString()}`}</p>
           )}
         </div>
