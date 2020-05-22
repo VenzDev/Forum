@@ -17,7 +17,9 @@ const SearchList = ({ data }) => {
       ))}
       {data.threads.map((thread, key) => (
         <li className={s.listItem} key={key}>
-          <Link to={`/thread/${thread._id}`}>{thread.name}</Link>
+          <Link className={s.linkStyle} to={`/thread/${thread._id}`}>
+            {thread.name}
+          </Link>
           <TiMessages className={s.listicon} />
         </li>
       ))}
