@@ -64,7 +64,6 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
       isNotification = true;
     else isNotification = false;
   //
-  console.log(isNotificationmenuChecked);
   if (isUser) {
     return (
       <>

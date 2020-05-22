@@ -7,6 +7,7 @@ import axios from "axios";
 import showToast from "../../../utils/showToast";
 import { useDispatch } from "react-redux";
 import { forum } from "../../../redux/forum";
+import { createForumEndpoint } from "../../../apiConfig";
 
 const CreatePopup = ({ handleClose }) => {
   const [name, setName] = useState("");
@@ -17,7 +18,7 @@ const CreatePopup = ({ handleClose }) => {
   const handleName = (e) => setName(e.target.value);
   const handleDesc = (e) => setDescription(e.target.value);
   const handleSubmit = (e) => {
-    axios.post("http://localhost:3000/createForum", { name, description }).then((response) => {
+    axios.post(createForumEndpoint, { name, description }).then((response) => {
       if (response.status === 202) {
         showToast("Forum created successfully!");
         dispatch(forum.fetchForums());

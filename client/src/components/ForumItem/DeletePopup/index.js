@@ -7,12 +7,13 @@ import axios from "axios";
 import { forum as forumRedux } from "../../../redux/forum";
 import { useDispatch } from "react-redux";
 import showToast from "../../../utils/showToast";
+import { deleteForumEndpoint } from "../../../apiConfig";
 
 const DeletePopup = ({ handleClose, forum }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    axios.get("http://localhost:3000/deleteForum?id=" + forum._id).then((res) => {
+    axios.get(deleteForumEndpoint + forum._id).then((res) => {
       if (res.status === 202) {
         showToast("Forum deleted successfully");
         dispatch(forumRedux.fetchForums());
