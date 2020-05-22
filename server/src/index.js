@@ -41,7 +41,7 @@ app.use((err, req, res, next) => {
 mongoose.connect(
   process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
-  err => {
+  (err) => {
     if (err) {
       console.log(err);
     } else {

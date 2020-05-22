@@ -7,7 +7,8 @@ const threadSchema = new Schema(
     content: { type: String, required: true },
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
-    forum: { type: Schema.Types.ObjectId, ref: "Forum" }
+    forum: { type: Schema.Types.ObjectId, ref: "Forum" },
+    isClosed: { type: Boolean, required: true },
   },
   { timestamps: { createdAt: true, updatedAt: true } }
 );

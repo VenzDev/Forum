@@ -9,7 +9,7 @@ export const findThread = async (req, res, next) => {
         path: "posts",
         populate: { path: "user", select: "_id name surname isAdmin" },
       })
-      .populate({ path: "user", select: "_id name surname" });
+      .populate({ path: "user", select: "_id name surname isAdmin" });
     if (thread) res.status(201).json(thread);
     else throw new ErrorHandler(422, "Thread not found");
     next();
