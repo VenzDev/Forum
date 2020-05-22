@@ -20,4 +20,6 @@ https://ntp-forum.herokuapp.com/
 ![image](https://user-images.githubusercontent.com/44263739/82665213-a264c680-9c33-11ea-93df-4206dbb97187.png)
 ![image](https://user-images.githubusercontent.com/44263739/82665237-aee91f00-9c33-11ea-9aac-fafb8ca64a2d.png)
 ![image](https://user-images.githubusercontent.com/44263739/82665294-c58f7600-9c33-11ea-8191-e876bab07822.png)
+![image](https://user-images.githubusercontent.com/44263739/82665375-f96a9b80-9c33-11ea-84d5-df2487eb5e29.png)
+![image](https://user-images.githubusercontent.com/44263739/82665405-0091a980-9c34-11ea-82ba-6bc4bd3f77a6.png)
 
