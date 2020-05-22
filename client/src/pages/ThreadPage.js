@@ -18,7 +18,7 @@ const ThreadPage = (props) => {
   const [isEditPopup, setEditPopup] = useState(false);
   const threadState = useSelector((state) => state.threadReducer);
   const userState = useSelector((state) => state.userReducer);
-  const { user, posts, name, content, createdAt } = threadState.thread;
+  const { user, posts, name, content, createdAt, isClosed } = threadState.thread;
   const date = new Date(createdAt);
   if (content !== undefined) {
     const obj = JSON.parse(content);
@@ -57,7 +57,7 @@ const ThreadPage = (props) => {
   const RootPost = () => (
     <div className={`${s.container} ${style}`}>
       <div className={s.content}>
-        <h1 className={s.threadName}>{name}</h1>
+        <h1 className={s.threadName}>{isClosed ? name + " (Closed)" : name}</h1>
         {editorState !== undefined && (
           <Editor
             blockStyleFn={codeStyle}
@@ -98,7 +98,7 @@ const ThreadPage = (props) => {
     <div className={s.wrapper}>
       <RootPost />
       {posts && <PostsList posts={posts} />}
-      {userState.user && localStorage.getItem("token") && (
+      {userState.user && localStorage.getItem("token") && !isClosed && (
         <CreatePost threadId={props.match.params.id} />
       )}
     </div>

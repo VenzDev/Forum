@@ -3,15 +3,26 @@ import Popup from "../../Popup";
 import s from "./createpopup.module.scss";
 import b from "../../button.module.scss";
 import { MdClose } from "react-icons/md";
+import axios from "axios";
+import showToast from "../../../utils/showToast";
+import { useDispatch } from "react-redux";
+import { forum } from "../../../redux/forum";
 
 const CreatePopup = ({ handleClose }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
+  const dispatch = useDispatch();
+
   const handleName = (e) => setName(e.target.value);
   const handleDesc = (e) => setDescription(e.target.value);
   const handleSubmit = (e) => {
-    console.log("todo");
+    axios.post("http://localhost:3000/createForum", { name, description }).then((response) => {
+      if (response.status === 202) {
+        showToast("Forum created successfully!");
+        dispatch(forum.fetchForums());
+      }
+    });
   };
   return (
     <Popup>

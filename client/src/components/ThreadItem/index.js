@@ -28,7 +28,7 @@ const ThreadItem = ({ thread, isAdmin }) => {
       {isCloseThreadPopup && <CloseThreadPopup handleClick={handleCloseThreadClose} />}
       <div className={s.container}>
         <Link to={`/thread/${thread._id}`} className={s.threadInfo}>
-          <h2>{thread.name}</h2>
+          <h2>{thread.isClosed ? thread.name + " (Closed)" : thread.name}</h2>
           <p>{`Created at: ${date.toLocaleString()}`}</p>
         </Link>
         <Link to={`/thread/${thread._id}`} className={s.additional}>
