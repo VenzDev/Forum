@@ -2,6 +2,9 @@
 ## Simple discussion forum<br/>
 https://ntp-forum.herokuapp.com/
 (if the application cannot load and an "Application error" will be shown, it means app "is sleeping". after 2-3 minutes the application should load properly, after refresh).
+### Sample login details
+login:     arek@gmail.com
+password:  arek
 
 ## Technologies:
 ### FrontEnd:
