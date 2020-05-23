@@ -10,7 +10,7 @@ const threadSchema = new Schema(
     forum: { type: Schema.Types.ObjectId, ref: "Forum" },
     isClosed: { type: Boolean, required: true, default: false },
   },
-  { timestamps: { createdAt: true, updatedAt: true } }
+  { versionKey: false, timestamps: { createdAt: true, updatedAt: true } }
 );
 
 export default mongoose.model("Thread", threadSchema);
