@@ -1,7 +1,10 @@
 # Forum
 ## Simple discussion forum<br/>
-https://ntp-forum.herokuapp.com/
-(if the application cannot load and an "Application error" will be shown, it means app "is sleeping". after 2-3 minutes the application should load properly, after refresh).
+https://gallant-saha-3c04fb.netlify.app
+(Server is hosted on Heroku so sometimes server can "sleep", you need to wait a little more time for first fetch. After that server working properly).
+### Sample login details
+login:     arek@gmail.com
+password:  arek
 
 ## Technologies:
 ### FrontEnd:
