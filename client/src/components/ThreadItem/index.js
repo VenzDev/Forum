@@ -25,7 +25,9 @@ const ThreadItem = ({ thread, isAdmin }) => {
   return (
     <>
       {isDeletePopup && <DeletePopup handleClick={handleDeleteClose} />}
-      {isCloseThreadPopup && <CloseThreadPopup handleClick={handleCloseThreadClose} />}
+      {isCloseThreadPopup && (
+        <CloseThreadPopup id={thread._id} handleClick={handleCloseThreadClose} />
+      )}
       <div className={s.container}>
         <Link className={s.threadItem} to={`/thread/${thread._id}`}>
           <div className={s.threadInfo}>
