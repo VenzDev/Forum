@@ -24,7 +24,7 @@ const ThreadItem = ({ thread, isAdmin }) => {
 
   return (
     <>
-      {isDeletePopup && <DeletePopup handleClick={handleDeleteClose} />}
+      {isDeletePopup && <DeletePopup id={thread._id} handleClick={handleDeleteClose} />}
       {isCloseThreadPopup && (
         <CloseThreadPopup id={thread._id} handleClick={handleCloseThreadClose} />
       )}
