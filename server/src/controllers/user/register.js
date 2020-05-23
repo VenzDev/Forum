@@ -15,7 +15,13 @@ export const register = async (req, res, next) => {
     if (existEmail) throw new ErrorHandler(422, "Email already taken");
     else {
       const hashPassword = await bcrypt.hash(password, 12);
-      const createdUser = await User.create({ name, email, surname, password: hashPassword });
+      const createdUser = await User.create({
+        name,
+        email,
+        surname,
+        password: hashPassword,
+        isAdmin: false,
+      });
 
       if (createdUser) res.status(201).json({ message: "Success!" });
       else throw new ErrorHandler(422, "Problem with creating user");
