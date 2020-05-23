@@ -27,44 +27,32 @@ const ThreadItem = ({ thread, isAdmin }) => {
       {isDeletePopup && <DeletePopup handleClick={handleDeleteClose} />}
       {isCloseThreadPopup && <CloseThreadPopup handleClick={handleCloseThreadClose} />}
       <div className={s.container}>
-        <Link to={`/thread/${thread._id}`} className={s.threadInfo}>
-          <h2>{thread.isClosed ? thread.name + " (Closed)" : thread.name}</h2>
-          <p>{`Created at: ${date.toLocaleString()}`}</p>
-        </Link>
-        <Link to={`/thread/${thread._id}`} className={s.additional}>
-          <div className={s.additionalDesc}>
-            <h3>Activity</h3>
-            <h3>Posts</h3>
-            <h3 className={s.lastH3}>Author</h3>
+        <Link className={s.threadItem} to={`/thread/${thread._id}`}>
+          <div className={s.threadInfo}>
+            <h2>{thread.isClosed ? thread.name + " (Closed)" : thread.name}</h2>
+            <p>{`Created at: ${date.toLocaleString()}`}</p>
           </div>
-          <div className={s.additionalStat}>
-            <h3>{words[0]}</h3>
-            <h3>{thread.posts.length}</h3>
-            <h3 className={s.lastH3}>{`${thread.user.name} ${thread.user.surname}`}</h3>
+          <div className={s.additional}>
+            <div className={s.additionalDesc}>
+              <h3>Activity</h3>
+              <h3>Posts</h3>
+              <h3 className={s.lastH3}>Author</h3>
+            </div>
+            <div className={s.additionalStat}>
+              <h3>{words[0]}</h3>
+              <h3>{thread.posts.length}</h3>
+              <h3 className={s.lastH3}>{`${thread.user.name} ${thread.user.surname}`}</h3>
+            </div>
           </div>
         </Link>
         {isAdmin && (
           <>
-            <FaTrash
-              onClick={handleDeleteOpen}
-              style={{
-                position: "absolute",
-                right: "10px",
-                top: "30%",
-                fontSize: "1.5rem",
-                transform: "translateY(-50%)",
-              }}
-            />
-            <AiOutlineCloseCircle
-              onClick={handleCloseThreadOpen}
-              style={{
-                position: "absolute",
-                right: "10px",
-                top: "60%",
-                fontSize: "1.5rem",
-                transform: "translateY(-50%)",
-              }}
-            />
+            <div className={s.deleteIcon}>
+              <FaTrash onClick={handleDeleteOpen} />
+            </div>
+            <div className={s.closeIcon}>
+              <AiOutlineCloseCircle onClick={handleCloseThreadOpen} />
+            </div>
           </>
         )}
         <div className={s.line}></div>
