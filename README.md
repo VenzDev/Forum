@@ -1,6 +1,6 @@
 # Forum
 ## Simple discussion forum<br/>
-https://gallant-saha-3c04fb.netlify.app
+https://admiring-nightingale-adcb32.netlify.app
 (Server is hosted on Heroku so sometimes server can "sleep", you need to wait a little more time for first fetch. After that server working properly).
 ### Sample login details
 login:     arek@gmail.com
