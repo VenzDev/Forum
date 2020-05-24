@@ -20,6 +20,11 @@ password:  arek
 3. JsonWebToken
 4. helmet + bodyParser 
 
+##Todo List:
+1. Improve connection between Client and Server
+1. Improve Errorhandling in Client!
+2. Improve Validation!
+
 ## Screenshots:
 ![image](https://user-images.githubusercontent.com/44263739/82665213-a264c680-9c33-11ea-93df-4206dbb97187.png)
 ![image](https://user-images.githubusercontent.com/44263739/82665237-aee91f00-9c33-11ea-9aac-fafb8ca64a2d.png)
