@@ -59,10 +59,11 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
 
   //TODO (need to change on something better )
   let isNotification = false;
-  if (Object.keys(userState.user).length > 0)
+  if (Object.keys(userState.user).length > 0) {
     if (userState.user.notifications.length > 0 && isNotificationmenuChecked === false)
       isNotification = true;
     else isNotification = false;
+  }
   //
   if (isUser) {
     return (
