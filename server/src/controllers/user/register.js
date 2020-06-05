@@ -21,6 +21,7 @@ export const register = async (req, res, next) => {
         surname,
         password: hashPassword,
         isAdmin: false,
+        isBaned: false,
       });
 
       if (createdUser) res.status(201).json({ message: "Success!" });

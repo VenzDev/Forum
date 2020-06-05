@@ -10,20 +10,19 @@ export const auth = async (req, res, next) => {
 
     const _user = await User.findById(id).populate({
       path: "notifications",
-      populate: { path: "user", select: "_id name surname" },
+      populate: { path: "user", select: "_id name surname isBaned" },
     });
 
     if (user)
-      res
-        .status(202)
-        .json({
-          id,
-          email,
-          name,
-          surname,
-          notifications: _user.notifications,
-          isAdmin: _user.isAdmin,
-        });
+      res.status(202).json({
+        id,
+        email,
+        name,
+        surname,
+        notifications: _user.notifications,
+        isAdmin: _user.isAdmin,
+        isBaned: _user.isBaned,
+      });
     else throw new ErrorHandler(400, err);
   } catch (err) {
     next(err);

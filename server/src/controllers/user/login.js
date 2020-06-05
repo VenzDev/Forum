@@ -24,9 +24,11 @@ export const login = async (req, res, next) => {
     if (_user) correctPassword = await bc.compare(password, _user.password);
 
     if (correctPassword) {
-      const { _id, name, surname, email, notifications, isAdmin } = _user;
+      const { _id, name, surname, email, notifications, isAdmin, isBaned } = _user;
       const token = generateToken({ id: _id, name, surname, email });
-      res.status(201).json({ id: _id, name, surname, email, notifications, token, isAdmin });
+      res
+        .status(201)
+        .json({ id: _id, name, surname, email, notifications, token, isAdmin, isBaned });
     } else {
       throw new ErrorHandler(422, "Invalid password or email");
     }

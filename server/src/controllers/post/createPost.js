@@ -23,17 +23,16 @@ export const createPost = async (req, res, next) => {
       else {
         //notification for thread owner !
         if (user.id !== thread.user) {
-          /*const notification = new Notification({
+          const notification = new Notification({
             threadOwner: userForNotification._id,
             user: user.id,
             thread: threadId,
-          });*/
-          // await notification.save();
-          //userForNotification.notifications.push(notification._id);
-          //await userForNotification.save();
+          });
+          await notification.save();
+          userForNotification.notifications.push(notification._id);
+          await userForNotification.save();
         }
 
-        //await thread.save();
         await newPost.save();
         thread.posts.push(newPost._id);
         await thread.save();
