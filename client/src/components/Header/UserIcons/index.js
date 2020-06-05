@@ -100,6 +100,11 @@ const UserIcons = ({ isUser, handleLogout, location }) => {
             <AiOutlineCrown style={{ marginLeft: "5px", fontSize: "25px" }} />
           </div>
         )}
+        {userState.user.isBaned && (
+          <div className={s.admin} style={{ color: "red", fontSize: "1.5rem" }}>
+            {"Account Banned"}
+          </div>
+        )}
       </>
     );
   } else {

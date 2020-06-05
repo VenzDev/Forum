@@ -98,7 +98,7 @@ const ThreadPage = (props) => {
     <div className={s.wrapper}>
       <RootPost />
       {posts && <PostsList posts={posts} />}
-      {userState.user && localStorage.getItem("token") && !isClosed && (
+      {userState.user && !userState.user.isBaned && localStorage.getItem("token") && !isClosed && (
         <CreatePost threadId={props.match.params.id} />
       )}
     </div>

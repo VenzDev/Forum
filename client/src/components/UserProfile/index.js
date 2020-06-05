@@ -5,7 +5,7 @@ import b from "../button.module.scss";
 import BanPopup from "./BanPopup";
 
 const UserProfile = ({ user, isAdmin }) => {
-  const { name, surname, createdAt } = user;
+  const { name, surname, createdAt, isBaned, _id } = user;
   const [isBanPopup, showBanPopup] = useState(false);
   const data = new Date(createdAt);
 
@@ -13,7 +13,9 @@ const UserProfile = ({ user, isAdmin }) => {
 
   return (
     <>
-      {isBanPopup && <BanPopup name={name} handlePopup={(val) => handlePopup(val)} />}
+      {isBanPopup && (
+        <BanPopup name={name} isBaned={isBaned} id={_id} handlePopup={(val) => handlePopup(val)} />
+      )}
       <div className={s.container}>
         <div className={s.circle}>
           <FaUser className={s.userLogo} />
@@ -28,6 +30,7 @@ const UserProfile = ({ user, isAdmin }) => {
           <p>
             Member from: <span>{data.toLocaleString()}</span>
           </p>
+          {isBaned && <p style={{ color: "red" }}>User banned by Admin!</p>}
         </div>
         {isAdmin && (
           <button
