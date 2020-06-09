@@ -20,6 +20,12 @@ function App() {
       <BrowserRouter>
         <Header />
         <Wrapper>
+          <df-messenger
+            intent="WELCOME"
+            chat-title="Support"
+            agent-id="4ca32bbd-962c-4eb9-bf3f-533a94c4e55c"
+            language-code="en"
+          ></df-messenger>
           <ToastContainer />
           <Switch>
             <Route exact path="/" component={HomePage}></Route>
