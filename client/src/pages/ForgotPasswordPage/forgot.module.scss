@@ -16,6 +16,12 @@
   & div {
     width: 50%;
     margin: 0 auto;
+
+    & img {
+      display: block;
+      margin: 0 auto;
+      height: 40vh;
+    }
   }
   & .field {
     display: block;

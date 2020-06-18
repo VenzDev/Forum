@@ -1,15 +1,15 @@
 import React from "react";
 import s from "./forgot.module.scss";
-import { UndrawForgotPassword } from "react-undraw";
 import { Formik, Form, Field } from "formik";
 import b from "../../components/button.module.scss";
+import UndrawForgot from "../../svg/undraw_forgot.svg";
 
 const forgotPasswordPage = () => {
   return (
     <div className={s.forgot}>
       <h2>Forgot your password?</h2>
       <div>
-        <UndrawForgotPassword />
+        <img src={UndrawForgot} alt="forgot password" />
       </div>
       <p>Enter your email address below and we will email instructions for setting a new one.</p>
       <Formik initialValues={{ email: "" }}>

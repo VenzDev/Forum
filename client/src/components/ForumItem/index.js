@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import s from "./forumitem.module.scss";
-import { UndrawReact } from "react-undraw";
 import { Link } from "react-router-dom";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import EditPopup from "./EditPopup";
 import DeletePopup from "./DeletePopup";
+import ReactUndraw from "../../svg/undraw_react.svg";
 
 const ForumItem = ({ forum, admin }) => {
   const [isEditPopup, setEditPopup] = useState(false);
@@ -20,7 +20,7 @@ const ForumItem = ({ forum, admin }) => {
       {isDeletePopup && <DeletePopup handleClose={handleDeleteClose} forum={forum} />}
       <div className={s.forumItem}>
         <Link to={`/forum/${forum.name}`} className={s.forumDesc}>
-          <UndrawReact style={{ height: "100%", width: "200px", marginLeft: "2rem" }} />
+          <img src={ReactUndraw} style={{ height: "100%", width: "200px", marginLeft: "2rem" }} />
           <div>
             <h2>{forum.name}</h2>
             <p>{forum.description}</p>
