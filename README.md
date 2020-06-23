@@ -1,8 +1,6 @@
 # Forum
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a4889fa3-418e-440f-aed4-061345c645d1/deploy-status)](https://app.netlify.com/sites/admiring-nightingale-adcb32/deploys)
 ## Simple discussion forum<br/>
-https://admiring-nightingale-adcb32.netlify.app
-(Server is hosted on Heroku so sometimes server can "sleep", you need to wait a little more time for first fetch. After that server working properly).
+https://www.topikforum.tk/
 ### Sample login details
 login:     arek@gmail.com
 password:  arek
